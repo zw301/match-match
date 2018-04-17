@@ -1,70 +1,98 @@
-const Match = {
-  $stage: null,
-  $time: null,
-  imgs:[],
-  // types: ["red", "blue", "green", "pink", "black"],
-  types: 5,
-  rows: 6,
-  cols: 8,
-  width: 70,
-  height: 70,
-  gap: 10,
-  matrix: [],
-  pairs: null,
-  selected: null,
-  time: 300,
-  score: 0,
-  timeLeft: null,
-  timer: null,
-  playing: false,
+class Match {
+  constructor() {
+    this.$stag =  null;
+    this.$time = null;
+    this.imgs = [];
 
-  generateImg: function() {
+    //setting the level
+    this.level = 1;
+
+    //setting the game
+    this.types = 10;
+    this.rows = 6;
+    this.cols = 8;
+
+    this.width = 70;
+    this.height = 70;
+    this.gap = 10;
+    this.matrix = [];
+    this.pairs = null;
+    this.selected = null;
+    this.time = 300;
+    this.score = 0;
+    this.timeLeft = null;
+    this.timer = null;
+    //check if playing
+    this.playing = false;
+  }
+
+
+  //for test
+  test() {
+    this.level += 1;
+    if(this.level === 6) {
+      alert("You Win");
+      this.level = 1;
+      this.score = 0;
+      this.types = 10;
+      this.showScore();
+      this.showLevel();
+    }
+    this.build();
+  }
+
+  ///for test above
+
+  generateImg() {
     let imgs = new Array(30);
     for(let i = 0; i < 30; i++){
         imgs[i] = "img/" + i + '.png';
     }
-
     this.imgs = imgs;
-  },
+  }
 
   showLevel(){
-    let level = Math.round(this.types / 10);
     let oLevel = document.getElementById("level");
-    oLevel.innerHTML = "LEVEL: " + level;
-  },
+    oLevel.innerHTML = "LEVEL: " + this.level;
+  }
+
+  showScore(){
+    let oScore = document.getElementById("score");
+    oScore.innerHTML = "SCORE: " + this.score;
+  }
 
 
-  random: function(min, max) {
+  random_choose(min, max) {
     if(max == null) {
       max = min;
       min = 0;
     }
     return min + Math.floor(Math.random() * (max - min + 1));
-  },
+  }
 
 
-  shuffle: function(array) {
+  shuffle(array) {
     let length = array.length;
     let shuffled = Array(length);
     let rand;
 
     for (let index = 0; index < length; index++) {
-      rand = this.random(0, index);
+      rand = this.random_choose(0, index);
       if( rand !== index) shuffled[index] = shuffled[rand];
       shuffled[rand] = array[index];
     }
     return shuffled;
-  },
+  }
 
-  getFormattedTime: function(seconds) {
+  getFormattedTime(seconds) {
       var minutes = Math.floor(seconds / 60);
       var seconds = seconds % 60;
       return (minutes >= 10 ? minutes : "0" + minutes) + ":" + (seconds >= 10 ? seconds : "0" + seconds);
-  },
+  }
 
-  init: function(element, options) {
+  init(element, options) {
     this.generateImg();
-    this.showLevel();
+    // this.showLevel();
 
     function transitionendHandler(event) {
       let target = event.target;
@@ -104,23 +132,14 @@ const Match = {
     this.$stage.appendChild(canvas);
     this.$canvas = canvas;
     this.$ctx = ctx;
-  },
+  }
 
-  build: function() {
-    if(this.types === 30) {
-      alert("You win!!!!");
-      this.types = 10;
-      // clearTimeout(this.timer);
-      // this.timeLeft = null;
-      // this.score = 0;
-      this.init();
-    } else {
-      this.types += 5;
-    }
+  build() {
 
+    console.log(`types: ${this.types}`)
     this.showLevel();
 
-    console.log(this.types);
+    console.log(`level: ${this.level}`);
     let self = this;
     let fragment = document.createDocumentFragment();
     let tiles = new Array(this.rows * this.cols);
@@ -130,19 +149,15 @@ const Match = {
     if(!this.pairs) this.pairs = this.rows * this.cols / 2;
 
     for (let i = 0; i < this.pairs * 2;) {
-      tiles[i] = tiles[i + 1] = this.imgs.slice(0, this.types)[this.random(index)];
+      tiles[i] = tiles[i + 1] = this.imgs.slice(0, this.types)[this.random_choose(index)];
       i += 2;
     }
 
-    // for (let i = 0; i < this.pairs * 2;) {
-    //   tiles[i] = tiles[i + 1] = this.imgs.slice(0, this.types)[i];
-    //   i += 2;
-    // }
 
 
     tiles = this.shuffle(tiles);
 
-    //for testing
+    ////for testing
     function uniq(arr) {
       let result = [];
       for (var i = 0; i < arr.length; i++) {
@@ -154,6 +169,7 @@ const Match = {
     }
 
     console.log(uniq(tiles));
+    ////for testing above
 
     for (let row = 0; row < this.rows; row++) {
       this.matrix[row] = [];
@@ -184,16 +200,17 @@ const Match = {
       }
     }
     this.matrix[-1] = this.matrix[this.rows] = [];
+    // console.log(this.matrix);
 
     Array.prototype.forEach.call(this.$stage.querySelectorAll(".tile"), function(tile) {
       tile.parentNode.removeChild(tile);
     });
 
     this.$stage.appendChild(fragment);
-  },
+  }
 
 
-  handleClick: function(event) {
+  handleClick(event) {
     if(!this.playing) return;
     let self = this;
     let curr = event.target;
@@ -217,10 +234,17 @@ const Match = {
             }
 
             if(this. $stage.querySelectorAll(".tile").length === 0 || !this.findPair()) {
+              this.level += 1;
+              this.types = 10 + (this.level - 1) * 5;
+              if(this.level === 6) {
+                alert("YOU WIN!!!")
+                this.level = 1;
+                this.types = 10;
+                this.score = 0;
+              }
               setTimeout(function() {
-
                 self.build();
-              }, 1000);
+              }, 800);
             }
 
           } else {
@@ -237,9 +261,9 @@ const Match = {
     } else {
       this.selected = null;
     }
-  },
+  }
 
-  countdown: function() {
+  countdown() {
       var self = this;
       this.timeLeft--;
       this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
@@ -252,51 +276,52 @@ const Match = {
             self.over();
           }, 1000);
       }
-  },
+  }
 
 
 
 
-  play: function() {
+  play() {
     var self = this;
     this.score = 0;
-    this.timeLeft = this.time;
-    this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
-    clearTimeout(this.timer);
-    this.timer = setTimeout(function() {
-      self.countdown();
-    }, 1000);
+    // this.timeLeft = this.time;
+    // this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
+    // clearTimeout(this.timer);
+    // this.timer = setTimeout(function() {
+    //   self.countdown();
+    // }, 1000);
     this.build();
     this.playing = true;
-  },
+  }
 
 
-  over: function() {
+  over() {
       this.playing = false;
-      alert("Time's Up! \nScore: " + this.score);
-      this.build();
-      this.showLevel();
-  },
+      // alert("Time's Up! \nScore: " + this.score);
+      // this.build();
+      // this.showLevel();
+  }
 
   // parameter remove type
-  bingo: function() {
+  bingo() {
     this.score++;
-    let oScore = document.getElementById("score");
-    oScore.innerHTML = "SCORE: " + this.score;
-  },
+    // let oScore = document.getElementById("score");
+    // oScore.innerHTML = "SCORE: " + this.score;
+    this.showScore();
+  }
 
 
-  killTile: function(row, col) {
+  killTile(row, col) {
     let tile = this.matrix[row][col];
     if(tile) {
       let el = tile.el;
       if(el) el.classList.add("killed");
       this.matrix[row][col] = null;
     }
-  },
+  }
 
   //line between pair
-  killPath: function(points) {
+  killPath(points) {
     this.$ctx.beginPath();
     this.$ctx.moveTo(
       points[0].x * (this.width + this.gap) + this.width / 2,
@@ -342,10 +367,10 @@ const Match = {
       self.$ctx.restore();
     }, 200);
 
-  },
+  }
 
 
-  checkLinkable: function(a, b) {
+  checkLinkable(a, b) {
     let linkable;
 
     // No turn
@@ -361,14 +386,14 @@ const Match = {
     if(linkable) return linkable;
 
     return false;
-  },
+  }
 
-  checkSiblingLinkable: function(a, b) {
+  checkSiblingLinkable(a, b) {
     return ((a.x === b.x) && Math.abs(a.y - b.y) === 1) ||
         ((a.y === b.y) && Math.abs(a.x - b.x) === 1);
-  },
+  }
 
-  checkOneLineLinkable: function(a, b) {
+  checkOneLineLinkable(a, b) {
     if(!(a.x === b.x || a.y === b.y)) return false;
     if(this.checkSiblingLinkable(a, b)) return true;
 
@@ -396,9 +421,9 @@ const Match = {
       }
     }
     return linkable;
-  },
+  }
 
-  checkTwoLineLinkable: function(a, b) {
+  checkTwoLineLinkable(a, b) {
     let point1 = {
       x: b.x,
       y: a.y
@@ -412,9 +437,9 @@ const Match = {
     if (!this.matrix[point1.y][point1.x] && this.checkOneLineLinkable(a, point1) && this.checkOneLineLinkable(b, point1)) return point1;
     if (!this.matrix[point2.y][point2.x] && this.checkOneLineLinkable(a, point2) && this.checkOneLineLinkable(b, point2)) return point2;
     return false;
-  },
+  }
 
-  checkThreeLineLinkable: function(a, b) {
+  checkThreeLineLinkable(a, b) {
     let point1, point2;
 
     //up
@@ -467,9 +492,9 @@ const Match = {
     if (point2) return [point1, point2];
 
     return false;
-  },
+  }
 
-  findPair: function() {
+  findPair() {
     let pair = false;
     let rows = this.rows;
     let cols = this.cols;
@@ -506,13 +531,26 @@ const Match = {
     return pair;
   }
 
-};
+}
 
-Match.init("#stage", {
-  $time: "#time"
-});
 
-let oStart = document.getElementById("start");
-oStart.onclick = function() {
-  Match.play();
+
+let match = new Match();
+
+// match.init("#stage", {
+//   $time: "#time"
+// });
+match.init("#stage", { $time: "#time" });
+
+match.play();
+
+// let oStart = document.getElementById("start");
+// oStart.onclick = function() {
+//   Match.play();
+// };
+
+let oTest = document.getElementById("test");
+oTest.onclick = function() {
+  match.test();
+
 };
