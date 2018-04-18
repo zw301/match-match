@@ -1,28 +1,44 @@
+  body {
+    font-family: 'Quicksand', sans-serif;
+  }
 
-  #stage {
+  .stage {
     width: 630px;
     height: 470px;
     background: #EEE;
     margin: 70px auto 0;
     position: relative;
-
   }
-  #stage .tile {
+  .stage .tile {
     width: 68px;
     height: 68px;
     position: absolute;
     float: left;
-    /* -webkit-transition: .4s; */
     transition: .4s;
-    /* -webkit-animation: tile .3s; */
     animation: tile .3s;
     z-index: 1;
     border: 1px solid #ccc;
   }
+
   #stage .tile.selected {
     outline: 5px solid rgba(0,0,0,.5);
     outline-offset: 3px;
   }
+
+  #fakeStage {
+    margin-top: 0;
+    position: relative;
+    top: -470px;
+    z-index: 10;
+    background: black;
+    opacity: 0.4;
+    color: #fff;
+    font-size: 36px;
+    line-height: 470px;
+    display: block;
+    /* display: none; */
+  }
+
 
 
   .tile {
@@ -32,24 +48,7 @@
     background-color: #fff;
   }
 
-  /* .tile.red {
-    background-image: url("img/1.png");
-  }
 
-  .tile.green {
-    background-image: url("img/2.png");
-  }
-  .tile.blue {
-    background-image: url("img/3.png");
-  }
-  .tile.pink { background-color: pink; }
-  .tile.black { background-color: black; } */
-
-
-  /* .tile.green { background-color: green; }
-  .tile.blue { background-color: blue; }
-  .tile.pink { background-color: pink; }
-  .tile.black { background-color: black; } */
   .tile.killed {
     background: none;
     pointer-events: none;
@@ -74,30 +73,49 @@
 
   h1 {
     text-align: center;
+    color: #3C7A89;
+    font-size: 50px;
   }
 
  div {
     text-align: center;
   }
 
- #start {
-   width: 100px;
-   height: 40px;
-   line-height: 40px;
+  .button span:first-of-type {
+    margin-right: 100px;
+  }
+
+ .start {
    color: #fff;
-   border: 1px solid #ccc;
+   border: 1px solid #A9CBB7;
    border-radius: 5px;
-   background-color: #ccc;
+   background-color: #A9CBB7;
    margin: 4px auto;
+   padding: 10px;
  }
 
+ .start:hover {
+   background-color: #789986;
+   cursor: pointer;
+ }
+
+ #time {
+   margin-top: 30px;
+   color: #967AA1;
+   font-weight: bold;
+ }
+
+
 .info{
-  display: flex;
-  justify-content:space-around;
+  width: 630px;
+  margin: 30px auto 0;
+  /* display: flex; */
+  /* justify-content:space-around; */
+  color: #FFA69E;
 }
 
-.levels {
-  display: flex;
+.levels span{
+  margin: 10px 0;
 }
 
 .total {

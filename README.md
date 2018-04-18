@@ -44,15 +44,15 @@ This project will be implemented with:
 ## Implementation Timeline
 
 ### Over the weekend:
-- [ ] learn how Canvas works
-- [ ] design algorithm for the game
+- [x] learn how Canvas works
+- [x] design algorithm for the game
 
 ### Day 1:
 Setup all necessary Node modules, including getting webpack up and running. Create webpack.config.js as well as package.json. Write a basic entry file and the bare bones of project.
-- [ ] Create a webpack.config.js file
-- [ ] Generate bundle.js and ensure it's working with the entry file
-- [ ] Create basic visual frames
-- [ ] Build the structure of the game
+- [x] Create a webpack.config.js file
+- [x] Generate bundle.js and ensure it's working with the entry file
+- [x] Create basic visual frames
+- [x] Build the structure of the game
 
 ### Day 2:
 This day is dedicated to writing the

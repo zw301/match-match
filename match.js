@@ -18,30 +18,13 @@ class Match {
     this.matrix = [];
     this.pairs = null;
     this.selected = null;
-    this.time = 300;
+    this.time = 90;
     this.score = 0;
     this.timeLeft = null;
     this.timer = null;
     //check if playing
     this.playing = false;
   }
-
-
-  //for test
-  test() {
-    this.level += 1;
-    if(this.level === 6) {
-      alert("You Win");
-      this.level = 1;
-      this.score = 0;
-      this.types = 10;
-      this.showScore();
-      this.showLevel();
-    }
-    this.build();
-  }
-
-  ///for test above
 
   generateImg() {
     let imgs = new Array(30);
@@ -59,6 +42,10 @@ class Match {
   showScore(){
     let oScore = document.getElementById("score");
     oScore.innerHTML = "SCORE: " + this.score;
+  }
+
+  isPlaying() {
+    return this.playing;
   }
 
 
@@ -85,14 +72,15 @@ class Match {
   }
 
   getFormattedTime(seconds) {
-      var minutes = Math.floor(seconds / 60);
-      var seconds = seconds % 60;
-      return (minutes >= 10 ? minutes : "0" + minutes) + ":" + (seconds >= 10 ? seconds : "0" + seconds);
+      let minutes = Math.floor(seconds / 60);
+      let sec = seconds % 60;
+      return (minutes >= 10 ? minutes : "0" + minutes) + ":" + (sec >= 10 ? sec : "0" + sec);
   }
 
   init(element, options) {
     this.generateImg();
     // this.showLevel();
+    clearInterval(this.timer);
 
     function transitionendHandler(event) {
       let target = event.target;
@@ -101,12 +89,10 @@ class Match {
       }
     };
 
-    // this.$stage = typeof element === "string" ? document.querySelector(element) : element;
     this.$stage = document.querySelector(element);
     this.$stage.addEventListener("transitionend", transitionendHandler, false);
 
     if(options) {
-      // if(options.$time) this.$time = typeof options.$time === "string" ? document.querySelector(options.$time) : options.$time;
       if(options.$time) this.$time = document.querySelector(options.$time);
       if(options.types) this.types = options.types;
       if(options.imgs) this.imgs = options.imgs;
@@ -135,15 +121,22 @@ class Match {
   }
 
   build() {
-
-    console.log(`types: ${this.types}`)
+    // console.log(`types: ${this.types}`);
+    // console.log(`level: ${this.level}`);
     this.showLevel();
 
-    console.log(`level: ${this.level}`);
+    if(!unlimited) {
+      this.timeLeft = this.time;
+      this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
+      clearTimeout(this.timer);
+      this.timer = setTimeout(function() {
+        self.countdown();
+      }, 1000);
+    }
+
     let self = this;
     let fragment = document.createDocumentFragment();
     let tiles = new Array(this.rows * this.cols);
-    // let index = this.types.length - 1;
     let index = this.types - 1;
 
     if(!this.pairs) this.pairs = this.rows * this.cols / 2;
@@ -158,18 +151,17 @@ class Match {
     tiles = this.shuffle(tiles);
 
     ////for testing
-    function uniq(arr) {
-      let result = [];
-      for (var i = 0; i < arr.length; i++) {
-        if(!result.includes(arr[i])) {
-          result.push(arr[i]);
-        }
-      }
-      return result;
-    }
-
-    console.log(uniq(tiles));
-    ////for testing above
+    // function uniq(arr) {
+    //   let result = [];
+    //   for (var i = 0; i < arr.length; i++) {
+    //     if(!result.includes(arr[i])) {
+    //       result.push(arr[i]);
+    //     }
+    //   }
+    //   return result;
+    // }
+    //
+    // console.log(uniq(tiles));
 
     for (let row = 0; row < this.rows; row++) {
       this.matrix[row] = [];
@@ -186,7 +178,6 @@ class Match {
         tile.x = col;
         tile.y = row;
         tile.type = type;
-        // tile.className = "tile " + type;
         tile.className = "tile";
         tile.style.backgroundImage = "url(" + type + ")";
         tile.addEventListener("ontouchend" in window ? "touchend" : "click", function(event) {
@@ -238,13 +229,19 @@ class Match {
               this.types = 10 + (this.level - 1) * 5;
               if(this.level === 6) {
                 alert("YOU WIN!!!")
+                clearTimeout(this.timer);
+                // this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
                 this.level = 1;
                 this.types = 10;
                 this.score = 0;
+                match = null;
+                playing = false;
               }
               setTimeout(function() {
-                self.build();
-              }, 800);
+                if(match) {
+                  self.build();
+                }
+              }, 600);
             }
 
           } else {
@@ -284,6 +281,7 @@ class Match {
   play() {
     var self = this;
     this.score = 0;
+    this.showScore();
     // this.timeLeft = this.time;
     // this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
     // clearTimeout(this.timer);
@@ -297,7 +295,8 @@ class Match {
 
   over() {
       this.playing = false;
-      // alert("Time's Up! \nScore: " + this.score);
+      alert("Time's Up! \nScore: " + this.score);
+      playing = false;
       // this.build();
       // this.showLevel();
   }
@@ -535,22 +534,33 @@ class Match {
 
 
 
-let match = new Match();
 
-// match.init("#stage", {
-//   $time: "#time"
-// });
-match.init("#stage", { $time: "#time" });
+let match;
+let playing = false;
+let unlimited = false;
 
-match.play();
+let oFakeStage = document.getElementById("fakeStage");
 
-// let oStart = document.getElementById("start");
-// oStart.onclick = function() {
-//   Match.play();
-// };
 
-let oTest = document.getElementById("test");
-oTest.onclick = function() {
-  match.test();
+let oStart = document.getElementById("start");
+oStart.onclick = function() {
+  oFakeStage.style.display = "none";
+  match = new Match();
+  if(!playing) {
+    match.init("#stage", { $time: "#time" });
+    match.play();
+    playing = true;
+  }
+};
 
+let oUnlimited = document.getElementById("unlimited");
+oUnlimited.onclick = function() {
+  oFakeStage.style.display = "none";
+  unlimited = true;
+  match = new Match();
+  if(!playing) {
+    match.init("#stage", { $time: "#time" });
+    match.play();
+    playing = true;
+  }
 };
