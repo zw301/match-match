@@ -18,12 +18,12 @@ class Match {
     this.matrix = [];
     this.pairs = null;
     this.selected = null;
-    this.time = 90;
+    this.time = 5;
     this.score = 0;
     this.timeLeft = null;
     this.timer = null;
     //check if playing
-    this.playing = false;
+    // this.playing = false;
   }
 
   generateImg() {
@@ -43,11 +43,6 @@ class Match {
     let oScore = document.getElementById("score");
     oScore.innerHTML = "SCORE: " + this.score;
   }
-
-  isPlaying() {
-    return this.playing;
-  }
-
 
   random_choose(min, max) {
     if(max == null) {
@@ -84,10 +79,11 @@ class Match {
 
     function transitionendHandler(event) {
       let target = event.target;
-      if(target.classList.contains("killed")) {
+      if(target.classList.contains("killed") && target.parentNode) {
+        // console.log(target)
         target.parentNode.removeChild(target);
       }
-    };
+    }
 
     this.$stage = document.querySelector(element);
     this.$stage.addEventListener("transitionend", transitionendHandler, false);
@@ -202,7 +198,7 @@ class Match {
 
 
   handleClick(event) {
-    if(!this.playing) return;
+    // if(!this.playing) return;
     let self = this;
     let curr = event.target;
     curr.classList.toggle("selected");
@@ -228,7 +224,10 @@ class Match {
               this.level += 1;
               this.types = 10 + (this.level - 1) * 5;
               if(this.level === 6) {
-                alert("YOU WIN!!!")
+                // alert("YOU WIN!!!")
+                oFakeStage.style.display = "block";
+                oFakeStage.innerHTML = "You Win!!!";
+                unlimited = false;
                 clearTimeout(this.timer);
                 // this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
                 this.level = 1;
@@ -289,14 +288,17 @@ class Match {
     //   self.countdown();
     // }, 1000);
     this.build();
-    this.playing = true;
+    // this.playing = true;
   }
 
 
   over() {
-      this.playing = false;
-      alert("Time's Up! \nScore: " + this.score);
+      // this.playing = false;
+      // alert("Time's Up! \nScore: " + this.score);
+      oFakeStage.innerHTML = "Time's Up!";
+      oFakeStage.style.display = "block";
       playing = false;
+      unlimited = false;
       // this.build();
       // this.showLevel();
   }
@@ -545,8 +547,8 @@ let oFakeStage = document.getElementById("fakeStage");
 let oStart = document.getElementById("start");
 oStart.onclick = function() {
   oFakeStage.style.display = "none";
-  match = new Match();
   if(!playing) {
+    match = new Match();
     match.init("#stage", { $time: "#time" });
     match.play();
     playing = true;
@@ -554,11 +556,13 @@ oStart.onclick = function() {
 };
 
 let oUnlimited = document.getElementById("unlimited");
+let oTime = document.getElementById("time");
 oUnlimited.onclick = function() {
   oFakeStage.style.display = "none";
   unlimited = true;
-  match = new Match();
   if(!playing) {
+    match = new Match();
+    oTime.innerHTML = "";
     match.init("#stage", { $time: "#time" });
     match.play();
     playing = true;

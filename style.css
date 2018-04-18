@@ -21,7 +21,7 @@
   }
 
   #stage .tile.selected {
-    outline: 5px solid rgba(0,0,0,.5);
+    outline: 5px solid rgba(0,0,0,.3);
     outline-offset: 3px;
   }
 
@@ -38,8 +38,6 @@
     display: block;
     /* display: none; */
   }
-
-
 
   .tile {
     background-position: center;
@@ -109,8 +107,6 @@
 .info{
   width: 630px;
   margin: 30px auto 0;
-  /* display: flex; */
-  /* justify-content:space-around; */
   color: #FFA69E;
 }
 
