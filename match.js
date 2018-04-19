@@ -577,7 +577,7 @@ oUnlimited.onclick = function() {
 
 let oHowtoplay = document.getElementById("howtoplay");
 let oIntro = document.getElementById("intro");
-let introDisplaying = false;
+let introDisplaying = true;
 
 oHowtoplay.onclick = function() {
   introDisplaying = !introDisplaying;
