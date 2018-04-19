@@ -8,7 +8,7 @@ body {
   width: 630px;
   height: 470px;
   background: #EEE;
-  margin: 70px auto 0;
+  margin: 46px auto 0;
   position: relative;
 }
 .stage .tile {
@@ -61,14 +61,15 @@ canvas {
   top: 0;
   left: 0;
   z-index: 2;
+  /* border: 1px solid gsrey; */
 }
 
-@-webkit-keyframes tile {
+/* @-webkit-keyframes tile {
   from { transform: scale(.5); opacity: 0 }
 }
 @keyframes tile {
   from { transform: scale(.5); opacity: 0 }
-}
+} */
 
 h1 {
   text-align: center;
@@ -111,7 +112,7 @@ div {
 
 .info{
   width: 630px;
-  margin: 30px auto 0;
+  margin: 30px auto;
   color: #FFA69E;
 }
 
@@ -130,6 +131,7 @@ div {
   width: 800px;
   margin: 0 auto 20px;
   display: flex;
+  display: none;
 }
 
 #intro img {
@@ -143,15 +145,15 @@ div {
 
 .howto {
   margin: 0 auto 10px;
-  border: 1px solid #ccc;
-  background: #ccc;
+  border: 1px solid #788AA3;
+  background: #788AA3;
   color: #fff;
   font-size: 20px;
-  padding: 4px 10px;
+  padding: 4px 190px;
   display: inline-block;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .information {
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }

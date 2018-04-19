@@ -574,3 +574,18 @@ oUnlimited.onclick = function() {
     playing = true;
   }
 };
+
+let oHowtoplay = document.getElementById("howtoplay");
+let oIntro = document.getElementById("intro");
+let introDisplaying = false;
+
+oHowtoplay.onclick = function() {
+  introDisplaying = !introDisplaying;
+  if(introDisplaying) {
+    oIntro.style.display = "flex";
+    oHowtoplay.innerHTML = "Hide the Guide";
+  } else {
+    oIntro.style.display = "none";
+    oHowtoplay.innerHTML = "How to Play";
+  }
+};
