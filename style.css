@@ -166,4 +166,6 @@ div {
   justify-content: space-between;
   margin: 0 auto;
   font-size: 30px;
+  text-decoration: none;
+  color: black;
 }
