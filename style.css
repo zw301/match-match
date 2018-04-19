@@ -75,6 +75,7 @@ h1 {
   text-align: center;
   color: #3C7A89;
   font-size: 50px;
+  margin-top: 0;
 }
 
 div {
@@ -157,4 +158,12 @@ div {
 
 .information {
   margin-bottom: 30px;
+}
+
+.header-links {
+  width: 720px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  font-size: 30px;
 }
