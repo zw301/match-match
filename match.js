@@ -22,8 +22,7 @@ class Match {
     this.score = 0;
     this.timeLeft = null;
     this.timer = null;
-    //check if playing
-    // this.playing = false;
+
   }
 
   generateImg() {
@@ -74,7 +73,7 @@ class Match {
 
   init(element, options) {
     this.generateImg();
-    // this.showLevel();
+
     clearInterval(this.timer);
 
     function transitionendHandler(event) {
@@ -117,8 +116,6 @@ class Match {
   }
 
   build() {
-    // console.log(`types: ${this.types}`);
-    // console.log(`level: ${this.level}`);
     this.showLevel();
 
     if(!unlimited) {
@@ -145,19 +142,6 @@ class Match {
 
 
     tiles = this.shuffle(tiles);
-
-    ////for testing
-    // function uniq(arr) {
-    //   let result = [];
-    //   for (var i = 0; i < arr.length; i++) {
-    //     if(!result.includes(arr[i])) {
-    //       result.push(arr[i]);
-    //     }
-    //   }
-    //   return result;
-    // }
-    //
-    // console.log(uniq(tiles));
 
     for (let row = 0; row < this.rows; row++) {
       this.matrix[row] = [];
@@ -187,7 +171,6 @@ class Match {
       }
     }
     this.matrix[-1] = this.matrix[this.rows] = [];
-    // console.log(this.matrix);
 
     Array.prototype.forEach.call(this.$stage.querySelectorAll(".tile"), function(tile) {
       tile.parentNode.removeChild(tile);
@@ -198,7 +181,6 @@ class Match {
 
 
   handleClick(event) {
-    // if(!this.playing) return;
     let self = this;
     let curr = event.target;
     curr.classList.toggle("selected");
@@ -229,7 +211,6 @@ class Match {
                 oFakeStage.innerHTML = "You Win!!!";
                 unlimited = false;
                 clearTimeout(this.timer);
-                // this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
                 this.level = 1;
                 this.types = 10;
                 this.score = 0;
@@ -281,14 +262,8 @@ class Match {
     var self = this;
     this.score = 0;
     this.showScore();
-    // this.timeLeft = this.time;
-    // this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
-    // clearTimeout(this.timer);
-    // this.timer = setTimeout(function() {
-    //   self.countdown();
-    // }, 1000);
+
     this.build();
-    // this.playing = true;
   }
 
 
@@ -299,15 +274,11 @@ class Match {
       oFakeStage.style.display = "block";
       playing = false;
       unlimited = false;
-      // this.build();
-      // this.showLevel();
   }
 
-  // parameter remove type
+  // score part
   bingo() {
     this.score++;
-    // let oScore = document.getElementById("score");
-    // oScore.innerHTML = "SCORE: " + this.score;
     this.showScore();
   }
 
