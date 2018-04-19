@@ -1,7 +1,8 @@
 body {
   font-family: 'Quicksand', sans-serif;
-  min-width: 800px;
+  width: 800px;
   font-size: 18px;
+  margin: 0 auto;
 }
 
 .stage {
