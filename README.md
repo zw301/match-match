@@ -49,32 +49,31 @@ This project will be implemented with:
 
 ### Day 1:
 Setup all necessary Node modules, including getting webpack up and running. Create webpack.config.js as well as package.json. Write a basic entry file and the bare bones of project.
-- [x] Create a webpack.config.js file
-- [x] Generate bundle.js and ensure it's working with the entry file
 - [x] Create basic visual frames
 - [x] Build the structure of the game
 
 ### Day 2:
 This day is dedicated to writing the
-- [ ] Complete the initialize of pieces
-- [ ] Write function to generate new game
-- [ ] Complete the pair validation function
-- [ ] Start on elimination logic
+- [x] Complete the initialize of pieces
+- [x] Write function to generate new game
+- [x] Complete the pair validation function
+- [x] Start on elimination logic
 
 ### Day 3:
 This day is dedicated to writing the pair logic for two pieces.
-- [ ] Complete on elimination logic
-- [ ] Generate the connecting line during elimination
-- [ ] Game over function
+- [x] Complete on elimination logic
+- [x] Generate the connecting line during elimination
+- [x] Game over function
 
 
 ### Day 4:
 Deploy and test components
-- [ ] Create harder level when player completes the previous one
-- [ ] Style the project
-- [ ] Write introduction and illustrate how to play the game
-- [ ] Production README
+- [x] Create harder level when player completes the previous one
+- [x] Style the project
+- [x] Write introduction and illustrate how to play the game
+- [x] Production README
 
 ## Bonus Features
+- [x] Set the countdown time limit for each level
+- [x] Add no time limit model for better user experience
 - [ ] If the player stuck for a certain time, show a hint link
-- [ ] Set the countdown time limit for each level

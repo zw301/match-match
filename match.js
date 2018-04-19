@@ -535,14 +535,11 @@ class Match {
 }
 
 
-
-
 let match;
 let playing = false;
 let unlimited = false;
 
 let oFakeStage = document.getElementById("fakeStage");
-
 
 let oStart = document.getElementById("start");
 oStart.onclick = function() {

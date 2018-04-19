@@ -1,106 +1,112 @@
-  body {
-    font-family: 'Quicksand', sans-serif;
-  }
+body {
+  font-family: 'Quicksand', sans-serif;
+  min-width: 1000px;
+  font-size: 18px;
+}
 
-  .stage {
-    width: 630px;
-    height: 470px;
-    background: #EEE;
-    margin: 70px auto 0;
-    position: relative;
-  }
-  .stage .tile {
-    width: 68px;
-    height: 68px;
-    position: absolute;
-    float: left;
-    transition: .4s;
-    animation: tile .3s;
-    z-index: 1;
-    border: 1px solid #ccc;
-  }
+.stage {
+  width: 630px;
+  height: 470px;
+  background: #EEE;
+  margin: 70px auto 0;
+  position: relative;
+}
+.stage .tile {
+  width: 68px;
+  height: 68px;
+  position: absolute;
+  float: left;
+  transition: .4s;
+  animation: tile .3s;
+  z-index: 1;
+  border: 1px solid #ccc;
+}
 
-  #stage .tile.selected {
-    outline: 5px solid rgba(0,0,0,.3);
-    outline-offset: 3px;
-  }
+#stage .tile.selected {
+  outline: 5px solid rgba(0,0,0,.3);
+  outline-offset: 3px;
+}
 
-  #fakeStage {
-    margin-top: 0;
-    position: relative;
-    top: -470px;
-    z-index: 10;
-    background: black;
-    opacity: 0.4;
-    color: #fff;
-    font-size: 36px;
-    line-height: 470px;
-    display: block;
-    /* display: none; */
-  }
+#fakeStage {
+  margin-top: 0;
+  position: relative;
+  top: -470px;
+  z-index: 10;
+  background: black;
+  opacity: 0.4;
+  color: #fff;
+  font-size: 36px;
+  line-height: 470px;
+  display: block;
+  /* display: none; */
+}
 
-  .tile {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 45px 45px;
-    background-color: #fff;
-  }
+.tile {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 45px 45px;
+  background-color: #fff;
+}
 
-  .tile.killed {
-    background: none;
-    pointer-events: none;
-    transform: scale(1.5);
-    opacity: 0
-  }
+.tile.killed {
+  background: none;
+  pointer-events: none;
+  transform: scale(1.5);
+  opacity: 0
+}
 
-  canvas {
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-  }
+canvas {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
 
-  @-webkit-keyframes tile {
-    from { transform: scale(.5); opacity: 0 }
-  }
-  @keyframes tile {
-    from { transform: scale(.5); opacity: 0 }
-  }
+@-webkit-keyframes tile {
+  from { transform: scale(.5); opacity: 0 }
+}
+@keyframes tile {
+  from { transform: scale(.5); opacity: 0 }
+}
 
-  h1 {
-    text-align: center;
-    color: #3C7A89;
-    font-size: 50px;
-  }
+h1 {
+  text-align: center;
+  color: #3C7A89;
+  font-size: 50px;
+}
 
- div {
-    text-align: center;
-  }
+div {
+  text-align: center;
+}
+.button {
+  min-width: 400px;
+  /* margin-bottom: 30px; */
+}
+.button span:first-of-type {
+  margin-right: 100px;
+}
 
-  .button span:first-of-type {
-    margin-right: 100px;
-  }
+.start {
+ color: #fff;
+ border: 1px solid #A9CBB7;
+ border-radius: 5px;
+ background-color: #A9CBB7;
+ margin: 4px auto;
+ padding: 10px;
+}
 
- .start {
-   color: #fff;
-   border: 1px solid #A9CBB7;
-   border-radius: 5px;
-   background-color: #A9CBB7;
-   margin: 4px auto;
-   padding: 10px;
- }
+.start:hover {
+ background-color: #789986;
+ cursor: pointer;
+}
 
- .start:hover {
-   background-color: #789986;
-   cursor: pointer;
- }
-
- #time {
-   margin-top: 30px;
-   color: #967AA1;
-   font-weight: bold;
- }
+#time {
+ margin-top: 30px;
+ color: #967AA1;
+ font-weight: bold;
+ font-size: 20px;
+}
 
 
 .info{
@@ -108,6 +114,7 @@
   margin: 30px auto 0;
   color: #FFA69E;
 }
+
 
 .levels span{
   margin: 10px 0;
@@ -119,16 +126,14 @@
 
 
 #intro {
-  width: 1200px;
-  /* position: relative; */
-  /* top: -400px; */
-  /* margin: -400px auto 0; */
+  /* min-width: 800px; */
+  width: 800px;
   margin: 0 auto 20px;
   display: flex;
 }
 
 #intro img {
-  width: 400px;
+  width: 260px;
 }
 
 .intro-img {
@@ -137,10 +142,16 @@
 }
 
 .howto {
-  width: 200px;
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
+  border: 1px solid #ccc;
+  background: #ccc;
+  color: #fff;
+  font-size: 20px;
+  padding: 4px 10px;
+  display: inline-block;
+  border-radius: 5px;
 }
 
-.howto:hover {
-  background-color: #A9CBB7;
+.information {
+  margin-bottom: 60px;
 }
