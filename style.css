@@ -1,8 +1,7 @@
 body {
   font-family: 'Quicksand', sans-serif;
-  width: 800px;
+  min-width: 780px;
   font-size: 18px;
-  margin: 0 auto;
 }
 
 .stage {
@@ -99,15 +98,16 @@ div {
 }
 
 .start:hover {
- background-color: #789986;
- cursor: pointer;
+  background-color: #789986;
+  cursor: pointer;
 }
 
 #time {
- margin-top: 30px;
- color: #967AA1;
- font-weight: bold;
- font-size: 20px;
+  width: 780px;
+  margin-top: 30px;
+  color: #967AA1;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 
