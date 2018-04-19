@@ -18,7 +18,7 @@ class Match {
     this.matrix = [];
     this.pairs = null;
     this.selected = null;
-    this.time = 5;
+    this.time = 90;
     this.score = 0;
     this.timeLeft = null;
     this.timer = null;

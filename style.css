@@ -46,7 +46,6 @@
     background-color: #fff;
   }
 
-
   .tile.killed {
     background: none;
     pointer-events: none;
@@ -116,4 +115,32 @@
 
 .total {
   margin-left: 6px;
+}
+
+
+#intro {
+  width: 1200px;
+  /* position: relative; */
+  /* top: -400px; */
+  /* margin: -400px auto 0; */
+  margin: 0 auto 20px;
+  display: flex;
+}
+
+#intro img {
+  width: 400px;
+}
+
+.intro-img {
+  display: flex;
+  flex-direction: column;
+}
+
+.howto {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.howto:hover {
+  background-color: #A9CBB7;
 }
