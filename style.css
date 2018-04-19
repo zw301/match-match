@@ -145,13 +145,14 @@ div {
 
 .howto {
   margin: 0 auto 10px;
-  border: 1px solid #788AA3;
-  background: #788AA3;
-  color: #fff;
-  font-size: 20px;
-  padding: 4px 190px;
-  display: inline-block;
-  border-radius: 4px;
+  width: 470px;
+  /* border: 1px solid #788AA3; */
+  /* background: #788AA3; */
+  /* color: #fff; */
+  /* font-size: 20px; */
+  /* padding: 4px 190px; */
+  /* display: inline-block; */
+  /* border-radius: 4px; */
 }
 
 .information {
