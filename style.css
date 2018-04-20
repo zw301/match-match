@@ -64,12 +64,10 @@ canvas {
   /* border: 1px solid gsrey; */
 }
 
-/* @-webkit-keyframes tile {
-  from { transform: scale(.5); opacity: 0 }
-}
+
 @keyframes tile {
   from { transform: scale(.5); opacity: 0 }
-} */
+}
 
 h1 {
   text-align: center;
@@ -147,13 +145,6 @@ div {
 .howto {
   margin: 0 auto 10px;
   width: 470px;
-  /* border: 1px solid #788AA3; */
-  /* background: #788AA3; */
-  /* color: #fff; */
-  /* font-size: 20px; */
-  /* padding: 4px 190px; */
-  /* display: inline-block; */
-  /* border-radius: 4px; */
 }
 
 .information {
