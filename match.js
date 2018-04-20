@@ -22,7 +22,6 @@ class Match {
     this.score = 0;
     this.timeLeft = null;
     this.timer = null;
-
   }
 
   generateImg() {
@@ -57,10 +56,10 @@ class Match {
     let shuffled = Array(length);
     let rand;
 
-    for (let index = 0; index < length; index++) {
-      rand = this.random_choose(0, index);
-      if( rand !== index) shuffled[index] = shuffled[rand];
-      shuffled[rand] = array[index];
+    for (let i = 0; i < length; i++) {
+      rand = this.random_choose(0, i);
+      if( rand !== i) shuffled[i] = shuffled[rand];
+      shuffled[rand] = array[i];
     }
     return shuffled;
   }
@@ -189,7 +188,7 @@ class Match {
       if(this.selected) {
         let prev = this.selected;
         if(curr.type == prev.type) {
-          let linkable = this.checkLinkable(prev, curr);
+          let linkable = this.isLinkable(prev, curr);
           if(linkable) {
             this.bingo();
             this.selected = null;
@@ -342,51 +341,51 @@ class Match {
   }
 
 
-  checkLinkable(a, b) {
+  isLinkable(pointA, pointB) {
     let linkable;
 
     // No turn
-    linkable = this.checkOneLineLinkable(a, b);
+    linkable = this.isDirectLink(pointA, pointB);
     if(linkable) return linkable;
 
     // 1 turn
-    linkable = this.checkTwoLineLinkable(a, b);
+    linkable = this.isOneTurnLinked(pointA, pointB);
     if(linkable) return [linkable];
 
     // 2 turns
-    linkable = this.checkThreeLineLinkable(a, b);
+    linkable = this.isTwoTurnLinked(pointA, pointB);
     if(linkable) return linkable;
 
     return false;
   }
 
-  checkSiblingLinkable(a, b) {
-    return ((a.x === b.x) && Math.abs(a.y - b.y) === 1) ||
-        ((a.y === b.y) && Math.abs(a.x - b.x) === 1);
+  isAdjacent(pointA, pointB) {
+    return ((pointA.x === pointB.x) && Math.abs(pointA.y - pointB.y) === 1) ||
+        ((pointA.y === pointB.y) && Math.abs(pointA.x - pointB.x) === 1);
   }
 
-  checkOneLineLinkable(a, b) {
-    if(!(a.x === b.x || a.y === b.y)) return false;
-    if(this.checkSiblingLinkable(a, b)) return true;
+  isDirectLink(pointA, pointB) {
+    if(!(pointA.x === pointB.x || pointA.y === pointB.y)) return false;
+    if(this.isAdjacent(pointA, pointB)) return true;
 
     let linkable = true;
 
-    if(a.y === b.y) {
+    if(pointA.y === pointB.y) {
       // Same row
-      let min = Math.min(a.x, b.x);
-      let max = Math.max(a.x, b.x);
+      let min = Math.min(pointA.x, pointB.x);
+      let max = Math.max(pointA.x, pointB.x);
       for (let i = min + 1; i < max; i++) {
-        if(this.matrix[a.y][i]) {
+        if(this.matrix[pointA.y][i]) {
           linkable = false;
           break;
         }
       }
     } else {
       // Same col
-      let min = Math.min(a.y, b.y);
-      let max = Math.max(a.y, b.y);
+      let min = Math.min(pointA.y, pointB.y);
+      let max = Math.max(pointA.y, pointB.y);
       for (let i = min + 1; i < max; i++) {
-        if(this.matrix[i][a.x]) {
+        if(this.matrix[i][pointA.x]) {
           linkable = false;
           break;
         }
@@ -395,70 +394,70 @@ class Match {
     return linkable;
   }
 
-  checkTwoLineLinkable(a, b) {
+  isOneTurnLinked(pointA, pointB) {
     let point1 = {
-      x: b.x,
-      y: a.y
+      x: pointB.x,
+      y: pointA.y
     };
 
     let point2 = {
-      x: a.x,
-      y: b.y
+      x: pointA.x,
+      y: pointB.y
     };
 
-    if (!this.matrix[point1.y][point1.x] && this.checkOneLineLinkable(a, point1) && this.checkOneLineLinkable(b, point1)) return point1;
-    if (!this.matrix[point2.y][point2.x] && this.checkOneLineLinkable(a, point2) && this.checkOneLineLinkable(b, point2)) return point2;
+    if (!this.matrix[point1.y][point1.x] && this.isDirectLink(pointA, point1) && this.isDirectLink(pointB, point1)) return point1;
+    if (!this.matrix[point2.y][point2.x] && this.isDirectLink(pointA, point2) && this.isDirectLink(pointB, point2)) return point2;
     return false;
   }
 
-  checkThreeLineLinkable(a, b) {
+  isTwoTurnLinked(pointA, pointB) {
     let point1, point2;
 
     //up
-    for (let i = a.y - 1; i >= -1; i--) {
+    for (let i = pointA.y - 1; i >= -1; i--) {
         point1 = {
-            x: a.x,
+            x: pointA.x,
             y: i
         };
         if (this.matrix[point1.y][point1.x]) break;
-        point2 = this.checkTwoLineLinkable(point1, b);
+        point2 = this.isOneTurnLinked(point1, pointB);
         if (point2) break;
     }
     if (point2) return [point1, point2];
 
     //down
-    for (let i = a.y + 1; i <= this.rows; i++) {
+    for (let i = pointA.y + 1; i <= this.rows; i++) {
         point1 = {
-            x: a.x,
+            x: pointA.x,
             y: i
         };
         if (this.matrix[point1.y][point1.x]) break;
-        point2 = this.checkTwoLineLinkable(point1, b);
+        point2 = this.isOneTurnLinked(point1, pointB);
         if (point2) break;
     }
     if (point2) return [point1, point2];
 
 
     //left
-    for (var i = a.x - 1; i >= -1; i--) {
+    for (var i = pointA.x - 1; i >= -1; i--) {
         point1 = {
             x: i,
-            y: a.y
+            y: pointA.y
         };
         if (this.matrix[point1.y][point1.x]) break;
-        point2 = this.checkTwoLineLinkable(point1, b);
+        point2 = this.isOneTurnLinked(point1, pointB);
         if (point2) break;
     }
     if (point2) return [point1, point2];
 
     //right
-    for (var i = a.x + 1; i <= this.cols; i++) {
+    for (var i = pointA.x + 1; i <= this.cols; i++) {
         point1 = {
             x: i,
-            y: a.y
+            y: pointA.y
         };
         if (this.matrix[point1.y][point1.x]) break;
-        point2 = this.checkTwoLineLinkable(point1, b);
+        point2 = this.isOneTurnLinked(point1, pointB);
         if (point2) break;
     }
     if (point2) return [point1, point2];
@@ -472,7 +471,7 @@ class Match {
     let cols = this.cols;
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
-        let a = {
+        let pointA = {
           x: col,
           y: row
         };
@@ -481,16 +480,16 @@ class Match {
         let aType = this.matrix[row][col].type;
         for (let row2 = 0; row2 < rows; row2++) {
           for (let col2 = 0; col2 < cols; col2++) {
-            let b = {
+            let pointB = {
               x: col2,
               y: row2
             };
             if (!this.matrix[row2][col2]) continue;
             var bType = this.matrix[row2][col2].type;
             if ((aType != bType) || (row == row2 && col == col2)) continue;
-            var linkable = this.checkLinkable(a, b);
+            var linkable = this.isLinkable(pointA, pointB);
             if (linkable) {
-                pair = [a, b];
+                pair = [pointA, pointB];
                 break;
             };
           }
