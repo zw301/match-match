@@ -25,7 +25,7 @@ The game ends when all pieces are eliminated.
 ## Eliminate Logic
 ![eliminate_logic](https://res.cloudinary.com/chengzii/image/upload/v1523856497/2.png)
 ![eliminate_logic](https://res.cloudinary.com/chengzii/image/upload/v1523856497/3.png)
-![eliminate_logic](https://res.cloudinary.com/chengzii/image/upload/v1523856497/4.png)
+![eliminate_logic](https://res.cloudinary.com/chengzii/image/upload/v1524245762/4.png)
 ![eliminate_logic](https://res.cloudinary.com/chengzii/image/upload/v1523856497/5.png)
 
 ## Features
