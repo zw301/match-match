@@ -26,10 +26,10 @@ The game ends when all pieces are eliminated.
 
 
 <p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/1.png" width="800" /></p>
-<p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/2.png" width="420" style="float: left;/></p>
-<p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/3.png" width="420" style="float: left; /></p>
-<p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1524245762/4.png" width="420" style="float: left;/></p>
-<p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/5.png" width="420" style="float: left; /></p>
+<p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/2.png" width="440" style="float: left;/></p>
+<p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/3.png" width="440" style="float: left; /></p>
+<p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1524245762/4.png" width="440" style="float: left;/></p>
+<p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/5.png" width="440" style="float: left; /></p>
 
 
 ## Sample Link Logic <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
