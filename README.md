@@ -8,7 +8,7 @@
 ## Background and Overview
 Match-match is inspired by the game "A pair of cards", known as neurasthenia in Japan. It refers to a pattern matching puzzle game in various forms such as card games, electronic games, or online games.
 
-Game rules:
+Game Rules:
 Player clicks a piece in the board, the piece is "selected". The player then clicks another piece. These two pieces will be eliminated if they have the same images and meet any of the following conditions:
   1. horizontal/vertical connectivity: two pieces can be connected horizontally or vertically without any other piece between them (see 1 in illustration)
   2. one turn connectivity: two pieces can be connected in one turn without any piece between them (see 2 in illustration)
@@ -22,11 +22,70 @@ The game ends when all pieces are eliminated.
 
 
 
-## Eliminate Logic
+## How to Eliminate
 ![eliminate_logic](https://res.cloudinary.com/chengzii/image/upload/v1523856497/2.png)
 ![eliminate_logic](https://res.cloudinary.com/chengzii/image/upload/v1523856497/3.png)
 ![eliminate_logic](https://res.cloudinary.com/chengzii/image/upload/v1524245762/4.png)
 ![eliminate_logic](https://res.cloudinary.com/chengzii/image/upload/v1523856497/5.png)
+
+## Sample Link Logic
+```JS
+isTwoTurnLinked(pointA, pointB) {
+  let point1, point2;
+
+  //up
+  for (let i = pointA.y - 1; i >= -1; i--) {
+    point1 = {
+      x: pointA.x,
+      y: i
+    };
+    if (this.matrix[point1.y][point1.x]) break;
+    point2 = this.isOneTurnLinked(point1, pointB);
+    if (point2) break;
+  }
+  if (point2) return [point1, point2];
+
+  //down
+  for (let i = pointA.y + 1; i <= this.rows; i++) {
+    point1 = {
+      x: pointA.x,
+      y: i
+    };
+    if (this.matrix[point1.y][point1.x]) break;
+    point2 = this.isOneTurnLinked(point1, pointB);
+    if (point2) break;
+  }
+  if (point2) return [point1, point2];
+
+
+  //left
+  for (var i = pointA.x - 1; i >= -1; i--) {
+    point1 = {
+      x: i,
+      y: pointA.y
+    };
+    if (this.matrix[point1.y][point1.x]) break;
+    point2 = this.isOneTurnLinked(point1, pointB);
+    if (point2) break;
+  }
+  if (point2) return [point1, point2];
+
+  //right
+  for (var i = pointA.x + 1; i <= this.cols; i++) {
+    point1 = {
+      x: i,
+      y: pointA.y
+    };
+    if (this.matrix[point1.y][point1.x]) break;
+    point2 = this.isOneTurnLinked(point1, pointB);
+    if (point2) break;
+  }
+  if (point2) return [point1, point2];
+
+  return false;
+}
+
+```
 
 ## Features
 - Player can selected two tiles. There is connecting lines between the matched pieces.
@@ -39,6 +98,7 @@ The game ends when all pieces are eliminated.
 - Vanilla JavaScript for overall structure and game logic
 - HTML5 Canvas for DOM manipulation and rendering
 - CSS3 Transform for eliminated effects
+
 
 ## Furture additions
 - Music during playing and mute button
