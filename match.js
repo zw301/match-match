@@ -204,10 +204,10 @@ class Match {
             if(this. $stage.querySelectorAll(".tile").length === 0 || !this.findPair()) {
               this.level += 1;
               this.types = 10 + (this.level - 1) * 5;
-              if(this.level === 6) {
+              if(this.level === 4) {
                 // alert("YOU WIN!!!")
                 oFakeStage.style.display = "block";
-                oFakeStage.innerHTML = "You Win!!!";
+                oFakeStage.innerHTML = "You Win! ! ! Click to play again! ! !";
                 unlimited = false;
                 clearTimeout(this.timer);
                 this.level = 1;
@@ -533,7 +533,7 @@ oStart.onclick = function() {
 
 let oUnlimited = document.getElementById("unlimited");
 let oTime = document.getElementById("time");
-oUnlimited.onclick = function() {
+oFakeStage.onclick = oUnlimited.onclick = function() {
   oFakeStage.style.display = "none";
   unlimited = true;
   if(!playing) {
