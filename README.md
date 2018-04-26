@@ -1,9 +1,9 @@
 
-# Welcome to Match Match <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+# Welcome to Match Match <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 
 [Click here to play](https://match-match.herokuapp.com/)
 
-## Background and Overview <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+## Background and Overview <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 `Match Match` is inspired by the game "A pair of cards", known as neurasthenia in Japan. It refers to a pattern matching puzzle game in various forms such as card games, electronic games, or online games.
 
 Game Rules:
@@ -20,8 +20,8 @@ The game ends when all pieces are eliminated.
 
 
 
-## How to Eliminate <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
-## How to Eliminate <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+## How to Eliminate <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+## How to Eliminate <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 
 
 
@@ -32,8 +32,8 @@ The game ends when all pieces are eliminated.
 <p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/5.png" width="440" style="float: left; /></p>
 
 
-## Sample Link Logic <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
-## Sample Link Logic <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+## Sample Link Logic <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+## Sample Link Logic <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 
 ```JS
 isTwoTurnLinked(pointA, pointB) {
@@ -93,19 +93,19 @@ isTwoTurnLinked(pointA, pointB) {
 
 ```
 
-## Features <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+## Features <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 - Player can selected two tiles. There is connecting lines between the matched pieces.
 - The introduction can be hide.
 - Five levels with different difficulty.
 - Countdown time limit for each level
 - Two play models, one is no time limit for better user experience
 
-## Technologies <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+## Technologies <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 - Vanilla JavaScript for overall structure and game logic
 - HTML5 Canvas for DOM manipulation and rendering
 - CSS3 Transform for eliminated effects
 
 
-## Furture additions <img src="http://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+## Furture additions <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 - Music during playing and mute button
 - If the player stuck for a certain time, show a hint link
