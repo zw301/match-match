@@ -267,7 +267,6 @@ class Match {
 
 
   over() {
-      // this.playing = false;
       // alert("Time's Up! \nScore: " + this.score);
       oFakeStage.innerHTML = "Time's Up! ! ! Click to play again! ! !";
       oFakeStage.style.display = "block";
