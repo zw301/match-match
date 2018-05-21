@@ -522,6 +522,11 @@ let oFakeStage = document.getElementById("fakeStage");
 
 let oStart = document.getElementById("start");
 oStart.onclick = function() {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
+
   oFakeStage.style.display = "none";
   if(!playing) {
     match = new Match();
@@ -534,6 +539,11 @@ oStart.onclick = function() {
 let oUnlimited = document.getElementById("unlimited");
 let oTime = document.getElementById("time");
 oFakeStage.onclick = oUnlimited.onclick = function() {
+  window.scrollTo({
+    top: document.body.scrollHeight - 740,
+    behavior: "smooth"
+  });
+
   oFakeStage.style.display = "none";
   unlimited = true;
   if(!playing) {
