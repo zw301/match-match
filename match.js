@@ -269,7 +269,7 @@ class Match {
   over() {
       // this.playing = false;
       // alert("Time's Up! \nScore: " + this.score);
-      oFakeStage.innerHTML = "Time's Up!";
+      oFakeStage.innerHTML = "Time's Up! ! ! Click to play again! ! !";
       oFakeStage.style.display = "block";
       playing = false;
       unlimited = false;
@@ -528,7 +528,7 @@ oStart.onclick = function() {
       top: document.body.scrollHeight,
       behavior: "smooth"
     });
-    
+
     match = new Match();
     match.init("#stage", { $time: "#time" });
     match.play();
