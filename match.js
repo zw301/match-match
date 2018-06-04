@@ -89,18 +89,18 @@ class Match {
     this.$stage = document.querySelector(element);
     this.$stage.addEventListener("transitionend", transitionendHandler, false);
 
-    // if(options) {
-    //   if(options.$time) this.$time = document.querySelector(options.$time);
-    //   if(options.types) this.types = options.types;
-    //   if(options.imgs) this.imgs = options.imgs;
-    //   if(options.rows) this.rows = options.rows;
-    //   if(options.cols) this.rows = options.cols;
-    //   if(options.width) this.width = options.width;
-    //   if(options.height) this.height = options.height;
-    //   if(options.gap) this.gap = options.gap;
-    //   if(options.pairs) this.pairs = options.pairs;
-    //   if(options.time) this.time = options.time;
-    // }
+    if(options) {
+      if(options.$time) this.$time = document.querySelector(options.$time);
+      if(options.types) this.types = options.types;
+      if(options.imgs) this.imgs = options.imgs;
+      if(options.rows) this.rows = options.rows;
+      if(options.cols) this.rows = options.cols;
+      if(options.width) this.width = options.width;
+      if(options.height) this.height = options.height;
+      if(options.gap) this.gap = options.gap;
+      if(options.pairs) this.pairs = options.pairs;
+      if(options.time) this.time = options.time;
+    }
 
     let canvas = document.createElement("canvas");
     let ctx = canvas.getContext("2d");
@@ -678,12 +678,15 @@ oPrev.addEventListener("click", function() {
 
 // music
 const oBgm = document.getElementById('bgm');
+const oClickEffect = document.getElementById('clickEffect');
 const oMusicBtn = document.querySelector("#music");
 const oMusicOnOff = document.querySelector("#musicOnOff");
 
 
 
 oBgm.loop = true;
+oBgm.volume = 0.3;
+oClickEffect.volume = 0.3;
 let bgmPlay = true;
 
 oMusicBtn.addEventListener("click", function() {
