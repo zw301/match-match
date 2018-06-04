@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Match Match</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.6">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" type="image/png" href="https://res.cloudinary.com/chengzii/image/upload/c_scale,w_16/v1524030787/match.png"/>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -12,16 +12,49 @@
 
   </head>
   <body>
-    <header>
-      <div class="header-links">
-        <a href="https://github.com/zw301/matchmatch" target="_blank"><i class="fab fa-github-alt"></i></a>
-        <a href="https://www.linkedin.com/in/zw301/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <div id="welcome-modal" class="is-open">
+      <div id="welcome-wrapper">
+        <h2> Welcome to Match-Match !</h2>
+        <div class="modal-guides">
+          <div id="guide-0" class="guide">
+            <p>This is littel tutorial how to play this game.</p>
+            <p>You can press the skip. You can press the next</p>
+
+          </div>
+          <div id="guide-1" class="guide">
+            <p>guide 1.</p>
+            <p>  direct link</p>
+            <p>one line link</p>
+            <p>nothing between two card</p>
+          </div>
+          <div id="guide-2" class="guide">
+            <p>guide 2</p>
+            <p> one line link</p>
+
+            <p>2-line link ( 1 pivot</p>
+          </div>
+          <div id="guide-3" class="guide">
+            <p>guide 3</p>
+            <p>guide 3</p>
+            <p>guide 3</p>
+            <p>guide 3</p>
+            <p class="button model-start">Got It. Start Game!</p>
+          </div>
+        </div>
+        <span id="model-skip">skip</span>
+        <span id="model-prev">&lt;prev</span>
+        <span id="model-next">next&gt;</span>
+        <span id="model-pages">1/4</span>
       </div>
+      <div class="modal-screen welcome-modal-close"></div>
+    </div>
+
+    <header>
+      <h1>Match Match</h1>
     </header>
 
-    <h1>Match Match</h1>
 
-    <div class="information">
+    <!-- <div class="information">
       <div class="start howto" id="howtoplay">Hide the Guide</div>
       <div id="intro">
         <div class="intro-img">
@@ -38,31 +71,60 @@
           <img src="gif/1line.gif"/>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="button">
-      <span id="start" class="start">START ( Time Model )</span>
-      <span id="unlimited" class="start">START ( Unlimited )</span>
-    </div>
+    <main>
+      <aside>
+          <div class="info">
+            <div class="info-title">TIME LEFT</div>
+            <div id="time" class="record">No time limit</div>
+          </div>
+          <div class="info levels">
+            <div class="info-title">LEVEL</div>
+            <div class="subtitle">Total 3 Levels</div>
+            <div id ="level" class="record">1</div>
+          </div>
+          <div class="info">
+            <div class="info-title">SCORE</div>
+            <div id ="score" class="record">0</div>
+          </div>
+      </aside>
 
-    <div id="time"></div>
-    <section class="info">
-      <div class="levels">
-        <span id ="level">LEVEL: 1</span>
-        <span class="total">(total 3 levels)</span>
-      </div>
+      <section class="stage_container">
+        <div id="stage" class="stage"></div>
+        <div id="fakeStage" class="stage"> Press START to Play </div>
+      </section>
 
-      <div id ="score">SCORE: 0</div>
-    </section>
+      <nav class="buttons">
+          <div id="start" class="button">
+            <div>PLAY</div>
+            <div class="subtitle">Timed Model</div>
+          </div>
+          <div id="unlimited" class="button">
+            <div>PLAY</div>
+            <div class="subtitle">No Time Limit</div>
+          </div>
+          <div id="music" class="button">
+            <div>MUSIC</div>
+            <div class="subtitle" id="musicOnOff">ON</div>
+          </div>
+          <div id="effect" class="button">
+            <div>Effect</div>
+            <div class="subtitle" id="effecOnOff">ON</div>
+          </div>
 
-    <div class="stage_container">
-      <div id="stage" class="stage"></div>
-      <div id="fakeStage" class="stage">↑ Press START to Play ↑ </div>
-    </div>
-
-
+      </nav>
+    </main>
     <footer>
+      <div class="links">
+        <p>Match Match © 2018</p>
+        <a href="https://github.com/zw301/matchmatch" target="_blank"><i class="fab fa-github-square"></i></a>
+        <a href="https://www.linkedin.com/in/zw301/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
     </footer>
+
+    <audio src='sound/sound.wav' id='sound'></audio>
+    <audio src='sound/backgroud.mp3' id='bgm'></audio>
 
     <script src="match.js"></script>
   </body>

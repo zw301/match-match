@@ -22,6 +22,9 @@ class Match {
     this.score = 0;
     this.timeLeft = null;
     this.timer = null;
+
+    //music
+    this.effect = null;
   }
 
   generateImg() {
@@ -34,12 +37,12 @@ class Match {
 
   showLevel(){
     let oLevel = document.getElementById("level");
-    oLevel.innerHTML = "LEVEL: " + this.level;
+    oLevel.innerHTML = this.level;
   }
 
   showScore(){
     let oScore = document.getElementById("score");
-    oScore.innerHTML = "SCORE: " + this.score;
+    oScore.innerHTML = this.score;
   }
 
   random_choose(min, max) {
@@ -78,7 +81,6 @@ class Match {
     function transitionendHandler(event) {
       let target = event.target;
       if(target.classList.contains("killed") && target.parentNode) {
-        // console.log(target)
         target.parentNode.removeChild(target);
       }
     }
@@ -86,18 +88,18 @@ class Match {
     this.$stage = document.querySelector(element);
     this.$stage.addEventListener("transitionend", transitionendHandler, false);
 
-    if(options) {
-      if(options.$time) this.$time = document.querySelector(options.$time);
-      if(options.types) this.types = options.types;
-      if(options.imgs) this.imgs = options.imgs;
-      if(options.rows) this.rows = options.rows;
-      if(options.cols) this.rows = options.cols;
-      if(options.width) this.width = options.width;
-      if(options.height) this.height = options.height;
-      if(options.gap) this.gap = options.gap;
-      if(options.pairs) this.pairs = options.pairs;
-      if(options.time) this.time = options.time;
-    }
+    // if(options) {
+    //   if(options.$time) this.$time = document.querySelector(options.$time);
+    //   if(options.types) this.types = options.types;
+    //   if(options.imgs) this.imgs = options.imgs;
+    //   if(options.rows) this.rows = options.rows;
+    //   if(options.cols) this.rows = options.cols;
+    //   if(options.width) this.width = options.width;
+    //   if(options.height) this.height = options.height;
+    //   if(options.gap) this.gap = options.gap;
+    //   if(options.pairs) this.pairs = options.pairs;
+    //   if(options.time) this.time = options.time;
+    // }
 
     let canvas = document.createElement("canvas");
     let ctx = canvas.getContext("2d");
@@ -119,7 +121,7 @@ class Match {
 
     if(!unlimited) {
       this.timeLeft = this.time;
-      this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
+      this.$time.innerHTML = this.getFormattedTime(this.timeLeft);
       clearTimeout(this.timer);
       this.timer = setTimeout(function() {
         self.countdown();
@@ -137,7 +139,6 @@ class Match {
       tiles[i] = tiles[i + 1] = this.imgs.slice(0, this.types)[this.random_choose(index)];
       i += 2;
     }
-
 
 
     tiles = this.shuffle(tiles);
@@ -242,7 +243,7 @@ class Match {
   countdown() {
       var self = this;
       this.timeLeft--;
-      this.$time.innerHTML = "Time Left: " + this.getFormattedTime(this.timeLeft);
+      this.$time.innerHTML = this.getFormattedTime(this.timeLeft);
       if (this.timeLeft > 0) {
           this.timer = setTimeout(function() {
             self.countdown();
@@ -267,7 +268,6 @@ class Match {
 
 
   over() {
-      // alert("Time's Up! \nScore: " + this.score);
       oFakeStage.innerHTML = "Time's Up! ! ! Click to play again! ! !";
       oFakeStage.style.display = "block";
       playing = false;
@@ -335,7 +335,7 @@ class Match {
       );
       self.$ctx.clearRect(0, 0, self.$canvas.width, self.$canvas.height);
       self.$ctx.restore();
-    }, 200);
+    }, 300);
 
   }
 
@@ -523,10 +523,10 @@ let oStart = document.getElementById("start");
 oStart.onclick = function() {
   oFakeStage.style.display = "none";
   if(!playing) {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: "smooth"
-    });
+    // window.scrollTo({
+    //   top: document.body.scrollHeight,
+    //   behavior: "smooth"
+    // });
 
     match = new Match();
     match.init("#stage", { $time: "#time" });
@@ -542,30 +542,119 @@ oFakeStage.onclick = oUnlimited.onclick = function() {
   oFakeStage.style.display = "none";
   unlimited = true;
   if(!playing) {
-    window.scrollTo({
-      top: document.body.scrollHeight - 740,
-      behavior: "smooth"
-    });
+    // window.scrollTo({
+    //   top: document.body.scrollHeight - 740,
+    //   behavior: "smooth"
+    // });
 
     match = new Match();
-    oTime.innerHTML = "";
+    // oTime.innerHTML = "";
     match.init("#stage", { $time: "#time" });
     match.play();
     playing = true;
   }
 };
 
-let oHowtoplay = document.getElementById("howtoplay");
-let oIntro = document.getElementById("intro");
-let introDisplaying = true;
+// let oHowtoplay = document.getElementById("howtoplay");
+// let oIntro = document.getElementById("intro");
+// let introDisplaying = true;
+//
+// oHowtoplay.onclick = function() {
+//   introDisplaying = !introDisplaying;
+//   if(introDisplaying) {
+//     oIntro.style.display = "flex";
+//     oHowtoplay.innerHTML = "Hide the Guide";
+//   } else {
+//     oIntro.style.display = "none";
+//     oHowtoplay.innerHTML = "How to Play";
+//   }
+// };
 
-oHowtoplay.onclick = function() {
-  introDisplaying = !introDisplaying;
-  if(introDisplaying) {
-    oIntro.style.display = "flex";
-    oHowtoplay.innerHTML = "Hide the Guide";
+// welcome modal
+const welcomeModal = document.querySelector('#welcome-modal');
+const modalScreen = document.querySelector('.modal-screen');
+const oSkip = document.querySelector('#model-skip');
+
+const oPrev = document.querySelector("#model-prev");
+const oNext = document.querySelector("#model-next");
+const oPages = document.querySelector("#model-pages");
+
+const oGuides = document.querySelectorAll(".guide");
+let pageCount = 0;
+
+modalScreen.addEventListener("click", function() {
+  welcomeModal.classList.remove("is-open");
+});
+
+oSkip.addEventListener("click", function() {
+  welcomeModal.classList.remove("is-open");
+});
+
+
+oNext.addEventListener("click", function() {
+  pageCount++;
+
+  if (pageCount > 0) {
+    oPrev.style.display="block";
   } else {
-    oIntro.style.display = "none";
-    oHowtoplay.innerHTML = "How to Play";
+    oPrev.style.display="none";
   }
-};
+
+  console.log(`next: ${pageCount}`);
+  oPages.innerHTML = `${pageCount + 1}/4`;
+
+  oGuides.forEach(guide => {
+    guide.style.display="none";
+  })
+  oGuides[pageCount].style.display="block";
+  if (pageCount >= 3) {
+    oNext.style.display="none";
+    pageCount = 3;
+  }
+
+});
+
+oPrev.addEventListener("click", function() {
+  pageCount--;
+
+  if (pageCount < 3) {
+    oNext.style.display="block";
+  } else {
+    oNext.style.display="none";
+  }
+
+  oPages.innerHTML = `${pageCount + 1}/4`;
+  oGuides.forEach(guide => {
+    guide.style.display="none";
+  })
+
+  oGuides[pageCount].style.display="block";
+
+  if (pageCount <= 0) {
+    oPrev.style.display="none";
+    pageCount = 0;
+  }
+});
+
+// music
+const oBgm = document.getElementById('bgm');
+const oMusic = document.querySelector("#music");
+const oMusicOnOff = document.querySelector("#musicOnOff");
+const oEffectOnOff = document.querySelector("#effectOnOff");
+
+const oSound = document.getElementById('sound');
+
+oBgm.loop = true;
+let musicPlay = true;
+
+oMusic.addEventListener("click", function() {
+  if(musicPlay) {
+    bgm.play();
+    musicPlay = false;
+    oMusicOnOff.innerHTML="OFF";
+  } else {
+    bgm.pause();
+    musicPlay = true;
+    oMusicOnOff.innerHTML="ON";
+  }
+});

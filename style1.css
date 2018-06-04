@@ -1,0 +1,177 @@
+body {
+  font-family: 'Quicksand', sans-serif,↑;
+  min-width: 800px;
+  font-size: 18px;
+  border: 1px solid red;
+}
+
+
+footer .links {
+  width: 720px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  font-size: 30px;
+  text-decoration: none;
+  color: black;
+}
+
+
+.stage_container {
+  position: relative;
+  width: 630px;
+  margin: 40px auto;
+}
+
+.stage {
+  width: 630px;
+  height: 470px;
+  background: #EEE;
+  margin: 46px auto 0;
+  position: relative;
+}
+.stage .tile {
+  width: 68px;
+  height: 68px;
+  position: absolute;
+  float: left;
+  transition: .4s;
+  animation: tile .3s;
+  z-index: 1;
+  border: 1px solid #ccc;
+}
+
+#stage .tile.selected {
+  outline: 5px solid rgba(0,0,0,.3);
+  outline-offset: 3px;
+}
+
+#fakeStage {
+  margin-top: 0;
+  /* position: relative; */
+  position: absolute;
+  /* top: -470px; */
+  top: 0px;
+  z-index: 10;
+  background: black;
+  opacity: 0.4;
+  color: #fff;
+  font-size: 36px;
+  line-height: 470px;
+  display: block;
+  /* display: none; */
+}
+
+.tile {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 45px 45px;
+  background-color: #fff;
+}
+
+.tile.killed {
+  background: none;
+  pointer-events: none;
+  transform: scale(1.5);
+  opacity: 0
+}
+
+canvas {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  /* border: 1px solid gsrey; */
+}
+
+
+@keyframes tile {
+  from { transform: scale(.5); opacity: 0 }
+}
+
+h1 {
+  text-align: center;
+  color: #3C7A89;
+  font-size: 50px;
+  margin-top: 0;
+}
+
+div {
+  text-align: center;
+}
+.button {
+  min-width: 400px;
+  /* margin-bottom: 30px; */
+}
+.button span:first-of-type {
+  margin-right: 100px;
+}
+
+.start {
+ color: #fff;
+ border: 1px solid #A9CBB7;
+ border-radius: 5px;
+ background-color: #A9CBB7;
+ margin: 4px auto;
+ padding: 10px;
+}
+
+.start:hover {
+  background-color: #789986;
+  cursor: pointer;
+}
+
+#time {
+  /* width: 630px; */
+  margin-top: 30px;
+  color: #967AA1;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+.info{
+  /* width: 820px; */
+  margin: 30px auto;
+  color: #FFA69E;
+}
+
+
+.levels span{
+  margin: 10px 0;
+}
+
+.total {
+  margin-left: 6px;
+}
+
+
+#intro {
+  /* min-width: 800px; */
+  width: 800px;
+  margin: 0 auto 20px;
+  display: flex;
+}
+
+#intro img {
+  width: 260px;
+}
+
+.intro-img {
+  display: flex;
+  flex-direction: column;
+}
+
+.howto {
+  margin: 0 auto 10px;
+  width: 470px;
+}
+
+.information {
+  margin-bottom: 30px;
+}
+
+footer {
+  padding: 58px 0;
+}

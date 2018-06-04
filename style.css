@@ -1,32 +1,177 @@
+/* Global */
+html, body, div, header, nav, main, footer, h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  overflow:hidden;
+}
 body {
+  margin: 0;
+  padding: 0;
   font-family: 'Quicksand', sans-serif;
-  min-width: 800px;
+  min-width: 860px;
+  max-width: 1800px;
   font-size: 18px;
+  height: 100%;
+  overflow:hidden;
+
+}
+/* Global End*/
+
+
+/* Header */
+header {
+  background: #F5E6E8;
+  text-align: center;
 }
 
+header h1 {
+  color: #3C7A89;
+  /* color: #967AA1; */
+  font-size: 38px;
+  padding: 12px 0;
+}
 
-.header-links {
-  width: 720px;
+/* Header End*/
+
+/* main */
+main {
   display: flex;
-  justify-content: space-between;
   margin: 0 auto;
-  font-size: 30px;
-  text-decoration: none;
-  color: black;
+  width: 90%;
+  min-width: 900px;
+  min-height: 100%;
+  margin: 0 auto -122px;
+  overflow: hidden;
+  /* background-color: #ccc; */
+}
+/*  */
+
+/* Record Section */
+aside {
+  flex: 1;
+  margin: 50px auto 0;
+  height: 370px;
+  padding: 100px 40px 0px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  /* min-width: 180px; */
+}
+aside div {
+  text-align: center;
+  flex: 1;
+}
+aside .info {
+  /* margin: 16px; */
+}
+
+aside .info .record {
+  font-size: 18px;
+  font-weight: 900;
+  color: #E3655B;
+}
+aside .info-title {
+  font-weight: 900;
+  font-size: 22px;
+}
+/* Record Section End */
+
+
+/* Control Section */
+nav {
+  flex: 1;
+  /* min-width: 120px; */
+  margin: 58px auto 0;
+  height: 390px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 
+.subtitle{
+  font-size: 16px;
+}
+
+.button {
+  box-sizing: border-box;
+  color: #fff;
+  border: 1px solid #A9CBB7;
+  border-radius: 10px;
+  background-color: #A9CBB7;
+  margin: 10px auto;
+  width: 160px;
+  padding: 10px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.button:hover {
+  background-color: #789986;
+  cursor: pointer;
+}
+
+
+/* Control Section End */
+
+
+/* Footer */
+footer {
+  min-width: 900px;
+  height: 52px;
+  background: #F5E6E8;
+  flex: 0.2;
+  color: #666;
+}
+
+footer .links {
+  /* position: sticky;
+  top: 10px; */
+  display: flex;
+  text-align: right;
+  flex-direction: row-reverse;
+  justify-content:flex-start;
+  line-height: 58px;
+  padding-right: 20px;
+}
+
+footer .links a {
+  color: #666;
+  margin-left: 10px;
+}
+
+footer .links a i {
+  font-size: 20px;
+}
+
+footer .links p {
+  margin-left: 20px;
+  line-height: 54px;
+}
+/* Footer End */
+
+
+/* Stage */
 .stage_container {
+  margin: 58px auto 0;
   position: relative;
   width: 630px;
-  margin: 0 auto;
+  flex: 1;
+  /* border: 1px solid grey; */
 }
-
 .stage {
   width: 630px;
   height: 470px;
   background: #EEE;
-  margin: 46px auto 0;
+  margin: 0 auto;
   position: relative;
 }
 .stage .tile {
@@ -47,9 +192,9 @@ body {
 
 #fakeStage {
   margin-top: 0;
-  /* position: relative; */
   position: absolute;
-  /* top: -470px; */
+  left: 50%;
+  transform: translate(-315px);
   top: 0px;
   z-index: 10;
   background: black;
@@ -58,119 +203,123 @@ body {
   font-size: 36px;
   line-height: 470px;
   display: block;
+  text-align: center;
   /* display: none; */
 }
-
 .tile {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 45px 45px;
   background-color: #fff;
 }
-
 .tile.killed {
+  transition: all 0.5s ease-in-out;
   background: none;
   pointer-events: none;
   transform: scale(1.5);
-  opacity: 0
+  opacity: 0;
 }
-
 canvas {
   pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 2;
-  /* border: 1px solid gsrey; */
 }
 
 
-@keyframes tile {
+/* @keyframes tile {
   from { transform: scale(.5); opacity: 0 }
+} */
+/* Stage End */
+
+/* Welcome Modal */
+.modal-screen {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 90;
+}
+#welcome-modal {
+  display: none;
+}
+#welcome-modal.is-open {
+  display: block;
 }
 
-h1 {
-  text-align: center;
-  color: #3C7A89;
-  font-size: 50px;
-  margin-top: 0;
-}
-
-div {
-  text-align: center;
-}
-.button {
-  min-width: 400px;
-  /* margin-bottom: 30px; */
-}
-.button span:first-of-type {
-  margin-right: 100px;
-}
-
-.start {
- color: #fff;
- border: 1px solid #A9CBB7;
- border-radius: 5px;
- background-color: #A9CBB7;
- margin: 4px auto;
- padding: 10px;
-}
-
-.start:hover {
-  background-color: #789986;
-  cursor: pointer;
-}
-
-#time {
-  /* width: 630px; */
-  margin-top: 30px;
-  color: #967AA1;
-  font-weight: bold;
+#welcome-wrapper {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-340px);
+  width: 640px;
+  height: 460px;
+  padding: 20px;
+  background: #F9F1F2;
+  z-index: 100;
+  border: 1px solid #000;
   font-size: 20px;
+  color: #3C7A89;
 }
 
+#welcome-wrapper h2 {
+  text-align: center;
 
-.info{
-  /* width: 820px; */
-  margin: 30px auto;
-  color: #FFA69E;
 }
 
-
-.levels span{
-  margin: 10px 0;
+.modal-guides {
+  position: relative;
+  color: grey;
 }
 
-.total {
-  margin-left: 6px;
+.modal-guides  .guide {
+  /* position: absolute; */
+  border: 1px solid red;
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
 }
 
-
-#intro {
-  /* min-width: 800px; */
-  width: 800px;
-  margin: 0 auto 20px;
-  display: flex;
+#guide-0 {
+    /* display: none; */
+}
+#guide-1 {
+    display: none;
+}
+#guide-2 {
+    display: none;
+}
+#guide-3 {
+  display: none;
 }
 
-#intro img {
-  width: 260px;
+#model-skip {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#model-prev{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: none;
+}
+#model-next{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+#model-pages{
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  font-size: 16px;
 }
 
-.intro-img {
-  display: flex;
-  flex-direction: column;
+.model-start {
+  width: 300px;
+  margin: 0 auto;
 }
-
-.howto {
-  margin: 0 auto 10px;
-  width: 470px;
-}
-
-.information {
-  margin-bottom: 30px;
-}
-
-footer {
-  padding: 58px 0;
-}
+/* Welcome Modal end*/
