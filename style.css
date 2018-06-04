@@ -182,8 +182,8 @@ footer .links p {
   height: 68px;
   position: absolute;
   float: left;
-  transition: .4s;
-  animation: tile .3s;
+  transition: .3s;
+  animation: tile .4s;
   z-index: 1;
   border: 1px solid #ccc;
 }
@@ -230,7 +230,15 @@ canvas {
 
 
 @keyframes tile {
-  from { transform: scale(.5); opacity: 0 }
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  /* from { transform: scale(.5); opacity: 0 } */
 }
 /* Stage End */
 
@@ -320,7 +328,7 @@ canvas {
   font-size: 16px;
 }
 
-.model-start {
+#model-start {
   width: 300px;
   margin: 0 auto;
 }

@@ -593,6 +593,8 @@ const oNext = document.querySelector("#model-next");
 const oPages = document.querySelector("#model-pages");
 const oTutorial = document.querySelector("#tutorial");
 
+const oModelStart = document.querySelector("#model-start");
+
 const oGuides = document.querySelectorAll(".guide");
 let pageCount = 0;
 
@@ -626,6 +628,7 @@ oTutorial.addEventListener("click", function() {
 // close modal
 modalScreen.addEventListener("click", resetModal);
 oSkip.addEventListener("click", resetModal);
+oModelStart.addEventListener("click", resetModal);
 
 // next button
 oNext.addEventListener("click", function() {
