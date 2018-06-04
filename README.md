@@ -18,6 +18,10 @@ The game ends when all pieces are eliminated.
 <img src="https://match-match.herokuapp.com/gif/3lines.gif" width="400" />
 <img src="https://match-match.herokuapp.com/gif/2lines.gif" width="400" style="float: left; /></p>
 
+## Technologies <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+- Vanilla JavaScript for overall structure and game logic
+- HTML5 Canvas for DOM manipulation and rendering
+- CSS3 Transform for eliminated effects
 
 
 ## How to Eliminate <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
@@ -99,11 +103,6 @@ isTwoTurnLinked(pointA, pointB) {
 - Five levels with different difficulty.
 - Countdown time limit for each level
 - Two play models, one is no time limit for better user experience
-
-## Technologies <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
-- Vanilla JavaScript for overall structure and game logic
-- HTML5 Canvas for DOM manipulation and rendering
-- CSS3 Transform for eliminated effects
 
 
 ## Furture additions <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
