@@ -286,7 +286,7 @@ canvas {
 
 .modal-guides  .guide {
   /* position: absolute; */
-  border: 1px solid red;
+  border: 1px solid grey;
   width: 90%;
   margin: 20px auto;
   padding: 10px;
