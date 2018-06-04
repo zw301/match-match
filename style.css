@@ -143,7 +143,7 @@ footer .links {
   flex-direction: row-reverse;
   justify-content:flex-start;
   line-height: 58px;
-  padding-right: 80px;
+  padding-right: 40px;
 }
 
 footer .links a {
