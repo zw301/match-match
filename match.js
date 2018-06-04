@@ -24,7 +24,8 @@ class Match {
     this.timer = null;
 
     //music
-    this.effect = null;
+    this.clickEffect = null;
+    this.linkEffect = null;
   }
 
   generateImg() {
@@ -114,6 +115,9 @@ class Match {
     this.$stage.appendChild(canvas);
     this.$canvas = canvas;
     this.$ctx = ctx;
+
+    this.clickEffect = document.querySelector("#clickEffect");
+    this.linkEffect = document.querySelector("#linkEffect");
   }
 
   build() {
@@ -181,9 +185,17 @@ class Match {
 
 
   handleClick(event) {
+
     let self = this;
     let curr = event.target;
     curr.classList.toggle("selected");
+
+    if (!bgmPlay) {
+      // clickEffect.pause();
+      clickEffect.pause();
+      clickEffect.currentTime = 0;
+      clickEffect.play();
+    }
 
     if(curr.classList.contains("selected")) {
       if(this.selected) {
@@ -335,7 +347,7 @@ class Match {
       );
       self.$ctx.clearRect(0, 0, self.$canvas.width, self.$canvas.height);
       self.$ctx.restore();
-    }, 300);
+    }, 200);
 
   }
 
@@ -570,7 +582,8 @@ oFakeStage.onclick = oUnlimited.onclick = function() {
 //   }
 // };
 
-// welcome modal
+
+// Welcome Modal
 const welcomeModal = document.querySelector('#welcome-modal');
 const modalScreen = document.querySelector('.modal-screen');
 const oSkip = document.querySelector('#model-skip');
@@ -578,19 +591,43 @@ const oSkip = document.querySelector('#model-skip');
 const oPrev = document.querySelector("#model-prev");
 const oNext = document.querySelector("#model-next");
 const oPages = document.querySelector("#model-pages");
+const oTutorial = document.querySelector("#tutorial");
 
 const oGuides = document.querySelectorAll(".guide");
 let pageCount = 0;
 
-modalScreen.addEventListener("click", function() {
+//reset pageCount
+function resetModal() {
+  pageCount = 0;
+  oGuides.forEach(guide => {
+    guide.style.display="none";
+  });
+  oGuides[0].style.display="block";
   welcomeModal.classList.remove("is-open");
+  if (pageCount > 0) {
+    oPrev.style.display="block";
+  } else {
+    oPrev.style.display="none";
+  }
+
+  if (pageCount < 3) {
+    oNext.style.display="block";
+  } else {
+    oNext.style.display="none";
+  }
+  oPages.innerHTML = `${pageCount + 1}/4`;
+}
+
+// Open modal
+oTutorial.addEventListener("click", function() {
+  welcomeModal.classList.add("is-open");
 });
 
-oSkip.addEventListener("click", function() {
-  welcomeModal.classList.remove("is-open");
-});
+// close modal
+modalScreen.addEventListener("click", resetModal);
+oSkip.addEventListener("click", resetModal);
 
-
+// next button
 oNext.addEventListener("click", function() {
   pageCount++;
 
@@ -600,12 +637,11 @@ oNext.addEventListener("click", function() {
     oPrev.style.display="none";
   }
 
-  console.log(`next: ${pageCount}`);
   oPages.innerHTML = `${pageCount + 1}/4`;
 
   oGuides.forEach(guide => {
     guide.style.display="none";
-  })
+  });
   oGuides[pageCount].style.display="block";
   if (pageCount >= 3) {
     oNext.style.display="none";
@@ -614,6 +650,7 @@ oNext.addEventListener("click", function() {
 
 });
 
+// prev button
 oPrev.addEventListener("click", function() {
   pageCount--;
 
@@ -638,23 +675,22 @@ oPrev.addEventListener("click", function() {
 
 // music
 const oBgm = document.getElementById('bgm');
-const oMusic = document.querySelector("#music");
+const oMusicBtn = document.querySelector("#music");
 const oMusicOnOff = document.querySelector("#musicOnOff");
-const oEffectOnOff = document.querySelector("#effectOnOff");
 
-const oSound = document.getElementById('sound');
+
 
 oBgm.loop = true;
-let musicPlay = true;
+let bgmPlay = true;
 
-oMusic.addEventListener("click", function() {
-  if(musicPlay) {
+oMusicBtn.addEventListener("click", function() {
+  if(bgmPlay) {
     bgm.play();
-    musicPlay = false;
+    bgmPlay = false;
     oMusicOnOff.innerHTML="OFF";
   } else {
     bgm.pause();
-    musicPlay = true;
+    bgmPlay = true;
     oMusicOnOff.innerHTML="ON";
   }
 });

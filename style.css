@@ -119,6 +119,9 @@ nav {
   cursor: pointer;
 }
 
+#tutorial {
+  padding: 20px;
+}
 
 /* Control Section End */
 
@@ -213,7 +216,6 @@ footer .links p {
   background-color: #fff;
 }
 .tile.killed {
-  transition: all 0.5s ease-in-out;
   background: none;
   pointer-events: none;
   transform: scale(1.5);
@@ -227,9 +229,9 @@ canvas {
 }
 
 
-/* @keyframes tile {
+@keyframes tile {
   from { transform: scale(.5); opacity: 0 }
-} */
+}
 /* Stage End */
 
 /* Welcome Modal */
