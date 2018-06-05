@@ -525,6 +525,8 @@ document.documentElement.addEventListener('touchend', function(event) {
   lastTouchEnd = now;
 }, false);
 
+
+// init game
 let match;
 let playing = false;
 let unlimited = false;
@@ -590,8 +592,10 @@ const oSkip = document.querySelector('#model-skip');
 
 const oPrev = document.querySelector("#model-prev");
 const oNext = document.querySelector("#model-next");
-const oPages = document.querySelector("#model-pages");
 const oTutorial = document.querySelector("#tutorial");
+
+// const oPages = document.querySelector("#model-pages");
+const oModelSteps = document.querySelectorAll(".model-step");
 
 const oModelStart = document.querySelector("#model-start");
 
@@ -612,12 +616,16 @@ function resetModal() {
     oPrev.style.display="none";
   }
 
-  if (pageCount < 3) {
+  if (pageCount < 4) {
     oNext.style.display="block";
   } else {
     oNext.style.display="none";
   }
-  oPages.innerHTML = `${pageCount + 1}/4`;
+  // oPages.innerHTML = `${pageCount + 1}/4`;
+  oModelSteps.forEach(step => {
+    step.classList.remove("color");
+  })
+  oModelSteps[0].classList.add("color");
 }
 
 // Open modal
@@ -634,27 +642,29 @@ oModelStart.addEventListener("click", resetModal);
 oNext.addEventListener("click", function() {
   pageCount++;
 
+
   if (pageCount > 0) {
     oPrev.style.display="block";
   } else {
     oPrev.style.display="none";
   }
 
-  oPages.innerHTML = `${pageCount + 1}/4`;
+  oModelSteps[pageCount].classList.add("color");
+  // oPages.innerHTML = `${pageCount + 1}/4`;
 
   oGuides.forEach(guide => {
     guide.style.display="none";
   });
   oGuides[pageCount].style.display="block";
-  if (pageCount >= 3) {
+  if (pageCount >= 4) {
     oNext.style.display="none";
-    pageCount = 3;
+    pageCount = 4;
   }
-
 });
 
 // prev button
 oPrev.addEventListener("click", function() {
+  oModelSteps[pageCount].classList.remove("color");
   pageCount--;
 
   if (pageCount < 3) {
@@ -663,7 +673,8 @@ oPrev.addEventListener("click", function() {
     oNext.style.display="none";
   }
 
-  oPages.innerHTML = `${pageCount + 1}/4`;
+  // oPages.innerHTML = `${pageCount + 1}/4`;
+
   oGuides.forEach(guide => {
     guide.style.display="none";
   })

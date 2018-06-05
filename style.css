@@ -1,5 +1,5 @@
 /* Global */
-html, body, div, header, nav, main, footer, h1, h2, p {
+html, body, div, header, nav, main, footer, h1, h2, h3, p{
   margin: 0;
   padding: 0;
 }
@@ -18,6 +18,7 @@ body {
   height: 100%;
   overflow:hidden;
   margin: 0 auto;
+  -moz-user-select: none;
 }
 /* Global End*/
 
@@ -26,6 +27,7 @@ body {
 header {
   background: #F5E6E8;
   text-align: center;
+  /* background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); */
 }
 
 header h1 {
@@ -242,7 +244,8 @@ canvas {
 }
 /* Stage End */
 
-/* Welcome Modal */
+
+/* Welcome Model */
 .modal-screen {
   position: fixed;
   width: 100vw;
@@ -264,20 +267,18 @@ canvas {
   top: 15%;
   left: 50%;
   transform: translateX(-340px);
-  width: 640px;
-  height: 460px;
-  padding: 20px;
-  background: #F9F1F2;
+  width: 680px;
+  height: 500px;
+  max-height: 100vh;
   z-index: 100;
-  border: 1px solid #000;
+  background: #fff;
   font-size: 20px;
-  color: #3C7A89;
+  /* color: #789986; */
+  color: #A1D2CE;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-#welcome-wrapper h2 {
-  text-align: center;
-
-}
 
 .modal-guides {
   position: relative;
@@ -286,49 +287,138 @@ canvas {
 
 .modal-guides  .guide {
   /* position: absolute; */
-  border: 1px solid grey;
-  width: 90%;
-  margin: 20px auto;
-  padding: 10px;
+  /* width: 90%; */
+  /* margin: 20px auto; */
+  /* padding: 10px; */
+}
+
+.modal-guides .modal-welcome-header {
+  width: 100%;
+  height: 280px;
+  background-color: #A1D2CE;
+  color: #fff;
+  position: relative;
+}
+
+.modal-guides .modal-welcome-header img{
+  display: block;
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+.modal-guides .modal-welcome-header h2 {
+  text-align: center;
+  padding-top: 30px;
+  text-transform: uppercase;
+}
+
+.modal-guides .modal-welcome-header h2:after{
+  border-style: solid;
+  border-width: 20px 20px 0;
+  border-color: #A1D2CE transparent transparent;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  position: absolute;
+  content: "";
+  height: 0;
+  bottom: -20px;
+  width: 0;
+  left: 50%;
+}
+
+.modal-guides .model-info {
+  margin: 40px 20px 0 20px;
+}
+.modal-guides .model-info p {
+  margin: 4px 0;
+  text-align: center;
+}
+.guide h3 {
+  text-align: center;
+  background: #A1D2CE;
+  padding: 15px 0;
+  color: #fff;
 }
 
 #guide-0 {
-    /* display: none; */
+  /* display: none; */
 }
 #guide-1 {
-    display: none;
+  display: none;
 }
 #guide-2 {
-    display: none;
+  display: none;
 }
 #guide-3 {
+  display: none;
+}
+#guide-4 {
   display: none;
 }
 
 #model-skip {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 4px;
+  right: 18px;
+  cursor: pointer;
+  font-size: 36px;
+  color: #fff;
+  opacity: .8;
 }
-#model-prev{
+#model-skip:hover{
+  opacity: 1;
+}
+
+.model-button {
   position: absolute;
+  cursor: pointer;
+  font-size: 17px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#model-prev{
   bottom: 10px;
   left: 10px;
   display: none;
 }
+#model-prev:hover {
+  background: #A1D2CE;
+  color: #fff;
+}
 #model-next{
-  position: absolute;
   bottom: 10px;
   right: 10px;
 }
+#model-next:hover {
+  background: #A1D2CE;
+  color: #fff;
+}
 #model-pages{
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   left: 50%;
+  transform: translateX(-75px);
   font-size: 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+#model-pages .model-step {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #b7b7b7;
+  margin: 6px 10px;
+}
+
+#model-pages .color{
+  background-color: #A1D2CE;
+  /* background-color: #FE7D77; */
 }
 
 #model-start {
+  background-color: #A1D2CE;
   width: 300px;
   margin: 0 auto;
 }

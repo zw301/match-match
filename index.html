@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Match Match</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=0.6">
     <link rel="shortcut icon" type="image/png" href="https://res.cloudinary.com/chengzii/image/upload/c_scale,w_16/v1524030787/match.png"/>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -14,39 +14,62 @@
   <body>
     <div id="welcome-modal" class="is-open">
       <div id="welcome-wrapper">
-        <h2> Welcome to Match-Match !</h2>
+
         <div class="modal-guides">
           <div id="guide-0" class="guide">
-            <p>welcome</p>
-            <p>welcome</p>
-            <p>welcome</p>
-            <p>welcome</p>
-            <p>welcome</p>
+            <div class="modal-welcome-header">
+              <img src="https://res.cloudinary.com/chengzii/image/upload/c_scale,w_72/v1524030787/match.png">
+              <h2>Welcome to Match Match!</h2>
+            </div>
+            <div class="model-info">
+              <p>Inspired by the game "A pair of cards"</p>
+              <p>Use less than three lines to link two cards with same pattern
+                <!-- 只要将相同的两张牌用三根以内的直线连在一起就可以消除 -->
+              </p>
+              <p>Three levels</p>
+            </div>
+
           </div>
           <div id="guide-1" class="guide">
+            <h3> Welcome to Match-Match !</h3>
             <p>guide 1</p>
             <p>guide 1</p>
             <p>guide 1</p>
             <p>guide 1</p>
           </div>
           <div id="guide-2" class="guide">
+            <h3> Welcome to Match-Match !</h3>
             <p>guide 2</p>
             <p>guide 2</p>
             <p>guide 2</p>
             <p>guide 2</p>
           </div>
           <div id="guide-3" class="guide">
+            <h3> Welcome to Match-Match !</h3>
             <p>guide 3</p>
             <p>guide 3</p>
             <p>guide 3</p>
             <p>guide 3</p>
+          </div>
+          <div id="guide-4" class="guide">
+            <h3> Welcome to Match-Match !</h3>
             <p class="button" id="model-start">Got It. Start Game!</p>
           </div>
         </div>
-        <span id="model-skip">skip</span>
-        <span id="model-prev">&lt;prev</span>
-        <span id="model-next">next&gt;</span>
-        <span id="model-pages">1/4</span>
+        <span id="model-skip" onselectstart="return false;">&times;</span>
+        <span id="model-prev" class="model-button" onselectstart="return false;">
+          <i class="fa fa-chevron-left"></i> BACK
+        </span>
+        <span id="model-next" class="model-button" onselectstart="return false;">
+          NEXT <i class="fa fa-chevron-right"></i>
+        </span>
+        <div id="model-pages">
+          <div class="model-step color"></div>
+          <div class="model-step"></div>
+          <div class="model-step"></div>
+          <div class="model-step"></div>
+          <div class="model-step"></div>
+        </div>
       </div>
       <div class="modal-screen welcome-modal-close"></div>
     </div>

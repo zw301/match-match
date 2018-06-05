@@ -19,15 +19,14 @@ The game ends when all pieces are eliminated.
 <img src="https://match-match.herokuapp.com/gif/2lines.gif" width="400" style="float: left; /></p>
 
 ## Technologies <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
+
+## Technologies <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 - Vanilla JavaScript for overall structure and game logic
 - HTML5 Canvas for DOM manipulation and rendering
 - CSS3 Transform for eliminated effects
 
 
 ## How to Eliminate <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
-## How to Eliminate <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
-
-
 
 <p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/1.png" width="800" /></p>
 <p align="center"><img src="https://res.cloudinary.com/chengzii/image/upload/v1523856497/2.png" width="440" style="float: left;/></p>
