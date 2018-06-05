@@ -537,11 +537,6 @@ let oStart = document.getElementById("start");
 oStart.onclick = function() {
   oFakeStage.style.display = "none";
   if(!playing) {
-    // window.scrollTo({
-    //   top: document.body.scrollHeight,
-    //   behavior: "smooth"
-    // });
-
     match = new Match();
     match.init("#stage", { $time: "#time" });
     match.play();
@@ -552,17 +547,12 @@ oStart.onclick = function() {
 let oUnlimited = document.getElementById("unlimited");
 let oTime = document.getElementById("time");
 oFakeStage.onclick = oUnlimited.onclick = function() {
-
   oFakeStage.style.display = "none";
   unlimited = true;
   if(!playing) {
-    // window.scrollTo({
-    //   top: document.body.scrollHeight - 740,
-    //   behavior: "smooth"
-    // });
-
     match = new Match();
-    // oTime.innerHTML = "";
+    oTime.innerHTML = "No time limit";
+    console.log(oTime.innerHTML)
     match.init("#stage", { $time: "#time" });
     match.play();
     playing = true;
@@ -622,10 +612,14 @@ function resetModal() {
     oNext.style.display="none";
   }
   // oPages.innerHTML = `${pageCount + 1}/4`;
+  resetSteps();
+  oModelSteps[0].classList.add("color");
+}
+
+function resetSteps() {
   oModelSteps.forEach(step => {
     step.classList.remove("color");
   })
-  oModelSteps[0].classList.add("color");
 }
 
 // Open modal
@@ -648,7 +642,7 @@ oNext.addEventListener("click", function() {
   } else {
     oPrev.style.display="none";
   }
-
+  resetSteps();
   oModelSteps[pageCount].classList.add("color");
   // oPages.innerHTML = `${pageCount + 1}/4`;
 
@@ -664,8 +658,9 @@ oNext.addEventListener("click", function() {
 
 // prev button
 oPrev.addEventListener("click", function() {
-  oModelSteps[pageCount].classList.remove("color");
+  resetSteps();
   pageCount--;
+  oModelSteps[pageCount].classList.add("color");
 
   if (pageCount < 3) {
     oNext.style.display="block";
@@ -696,8 +691,8 @@ const oMusicOnOff = document.querySelector("#musicOnOff");
 
 
 oBgm.loop = true;
-oBgm.volume = 0.3;
-oClickEffect.volume = 0.3;
+oBgm.volume = 0.5;
+oClickEffect.volume = 0.5;
 let bgmPlay = true;
 
 oMusicBtn.addEventListener("click", function() {

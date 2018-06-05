@@ -408,18 +408,19 @@ canvas {
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: #b7b7b7;
+  background-color: #bebebe;
   margin: 6px 10px;
 }
 
 #model-pages .color{
   background-color: #A1D2CE;
+  background-color: #6db9b3;
   /* background-color: #FE7D77; */
 }
 
 #model-start {
   background-color: #A1D2CE;
   width: 300px;
-  margin: 0 auto;
+  margin: 100px auto;
 }
 /* Welcome Modal end*/
