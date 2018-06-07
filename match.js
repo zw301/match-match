@@ -23,9 +23,13 @@ class Match {
     this.timeLeft = null;
     this.timer = null;
 
-    //music
+    // music
     this.clickEffect = null;
     this.linkEffect = null;
+
+    // hint
+    this.hintCount = 5;
+    this.hintPair = [];
   }
 
   generateImg() {
@@ -185,13 +189,12 @@ class Match {
 
 
   handleClick(event) {
-
+    // this.clearHint();
     let self = this;
     let curr = event.target;
     curr.classList.toggle("selected");
 
     if (!bgmPlay) {
-      // clickEffect.pause();
       clickEffect.pause();
       clickEffect.currentTime = 0;
       clickEffect.play();
@@ -218,7 +221,6 @@ class Match {
               this.level += 1;
               this.types = 10 + (this.level - 1) * 5;
               if(this.level === 4) {
-                // alert("YOU WIN!!!")
                 oFakeStage.style.display = "block";
                 oFakeStage.innerHTML = "You Win! ! ! Click to play again! ! !";
                 unlimited = false;
@@ -348,6 +350,15 @@ class Match {
       self.$ctx.clearRect(0, 0, self.$canvas.width, self.$canvas.height);
       self.$ctx.restore();
     }, 200);
+
+    if (this.hintCount === 0) {
+      oHint.classList.add("grey");
+      oHint.removeEventListener("click", getHint);
+      return;
+    } else {
+      oHint.classList.remove("grey");
+      oHint.addEventListener("click", getHint);
+    }
 
   }
 
@@ -513,6 +524,39 @@ class Match {
     return pair;
   }
 
+  showHint() {
+    const pair = this.findPair();
+
+    if (!pair) {
+      return;
+    }
+
+    let tile1 = this.matrix[pair[0].y][pair[0].x];
+    let tile2 = this.matrix[pair[1].y][pair[1].x];
+
+    this.hintPair = [tile1, tile2]
+
+    tile1.el.classList.add("showhint");
+    tile2.el.classList.add("showhint");
+
+    this.hintCount--;
+    oHintCount.innerHTML = this.hintCount;
+    if (this.hintCount === 0) {
+      oHint.classList.add("grey");
+      oHint.removeEventListener("click", getHint);
+      return;
+    }
+    oHint.classList.add("grey");
+    oHint.removeEventListener("click", getHint);
+  }
+
+  clearHint() {
+    if (this.hintPair.length === 0) {
+      return;
+    }
+    this.hintPair[0].el.classList.remove("showhint");
+    this.hintPair[1].el.classList.remove("showhint");
+  }
 }
 
 // Turn off the double tap zoom
@@ -532,6 +576,8 @@ let playing = false;
 let unlimited = false;
 
 let oFakeStage = document.getElementById("fakeStage");
+let oHint = document.querySelector("#hint");
+let oHintCount = document.querySelector("#hintCount");
 
 let oStart = document.getElementById("start");
 oStart.onclick = function() {
@@ -540,6 +586,9 @@ oStart.onclick = function() {
     match = new Match();
     match.init("#stage", { $time: "#time" });
     match.play();
+
+    initHint();
+
     playing = true;
   }
 };
@@ -552,12 +601,29 @@ oFakeStage.onclick = oUnlimited.onclick = function() {
   if(!playing) {
     match = new Match();
     oTime.innerHTML = "No time limit";
-    console.log(oTime.innerHTML)
     match.init("#stage", { $time: "#time" });
     match.play();
+
+    initHint();
+
     playing = true;
   }
 };
+
+// Get hint
+function getHint() {
+  match.showHint();
+}
+
+function initHint() {
+  // oHint.style.visibility = "visible";
+  // oHint.style.display = "block";
+  oHint.classList.remove("grey");
+  oHintCount.innerHTML = match.hintCount;
+  oHint.addEventListener("click", getHint);
+}
+
+
 
 // let oHowtoplay = document.getElementById("howtoplay");
 // let oIntro = document.getElementById("intro");
@@ -584,9 +650,7 @@ const oPrev = document.querySelector("#model-prev");
 const oNext = document.querySelector("#model-next");
 const oTutorial = document.querySelector("#tutorial");
 
-// const oPages = document.querySelector("#model-pages");
 const oModelSteps = document.querySelectorAll(".model-step");
-
 const oModelStart = document.querySelector("#model-start");
 
 const oGuides = document.querySelectorAll(".guide");
@@ -611,11 +675,12 @@ function resetModal() {
   } else {
     oNext.style.display="none";
   }
-  // oPages.innerHTML = `${pageCount + 1}/4`;
+
   resetSteps();
   oModelSteps[0].classList.add("color");
 }
 
+// reset model footer step color
 function resetSteps() {
   oModelSteps.forEach(step => {
     step.classList.remove("color");
@@ -636,7 +701,6 @@ oModelStart.addEventListener("click", resetModal);
 oNext.addEventListener("click", function() {
   pageCount++;
 
-
   if (pageCount > 0) {
     oPrev.style.display="block";
   } else {
@@ -644,7 +708,6 @@ oNext.addEventListener("click", function() {
   }
   resetSteps();
   oModelSteps[pageCount].classList.add("color");
-  // oPages.innerHTML = `${pageCount + 1}/4`;
 
   oGuides.forEach(guide => {
     guide.style.display="none";
@@ -658,8 +721,9 @@ oNext.addEventListener("click", function() {
 
 // prev button
 oPrev.addEventListener("click", function() {
-  resetSteps();
   pageCount--;
+
+  resetSteps();
   oModelSteps[pageCount].classList.add("color");
 
   if (pageCount < 3) {
@@ -668,7 +732,6 @@ oPrev.addEventListener("click", function() {
     oNext.style.display="none";
   }
 
-  // oPages.innerHTML = `${pageCount + 1}/4`;
 
   oGuides.forEach(guide => {
     guide.style.display="none";

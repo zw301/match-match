@@ -48,7 +48,6 @@ main {
   min-height: 100%;
   margin: 0 auto -122px;
   overflow: hidden;
-  /* background-color: #ccc; */
 }
 /*  */
 
@@ -138,8 +137,7 @@ footer {
 }
 
 footer .links {
-  /* position: sticky;
-  top: 10px; */
+
   display: flex;
   text-align: right;
   flex-direction: row-reverse;
@@ -193,6 +191,19 @@ footer .links p {
 #stage .tile.selected {
   outline: 5px solid rgba(0,0,0,.3);
   outline-offset: 3px;
+}
+
+#stage .tile.showhint {
+  /* border: 5px solid rgba(255,0,0,.3); */
+  transform: scale(1.4);
+  background-color: #FFFD82;
+  /* outline-offset: 3px; */
+  z-index: 99;
+}
+
+
+#hint.grey {
+  background-color: grey;
 }
 
 #fakeStage {
