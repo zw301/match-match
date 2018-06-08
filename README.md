@@ -1,7 +1,7 @@
 
 # Welcome to Match Match <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 
-[Click here to play](https://match-match.herokuapp.com/)
+[Click here to play](https://zw301.github.io/match-match/)
 
 ## Background and Overview <img src="https://res.cloudinary.com/chengzii/image/upload/v1524030787/match.png" width="25" />
 `Match Match` is inspired by the game "A pair of cards", known as neurasthenia in Japan. It refers to a pattern matching puzzle game in various forms such as card games, electronic games, or online games.

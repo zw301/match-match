@@ -193,6 +193,7 @@ class Match {
     let self = this;
     let curr = event.target;
     curr.classList.toggle("selected");
+    curr.classList.remove("showhint");
 
     if (!bgmPlay) {
       clickEffect.pause();
@@ -302,6 +303,7 @@ class Match {
       if(el) el.classList.add("killed");
       this.matrix[row][col] = null;
     }
+    this.clearHint();
   }
 
   //line between pair
@@ -697,6 +699,17 @@ modalScreen.addEventListener("click", resetModal);
 oSkip.addEventListener("click", resetModal);
 oModelStart.addEventListener("click", resetModal);
 
+// oModelSteps.forEach((step, idx) => {
+//   step.addEventListener("click", function(){
+//     resetSteps();
+//     step.classList.add("color");
+//     pageCount = idx;
+//     oGuides.forEach(guide => {
+//       guide.style.display="none";
+//     });
+//     oGuides[pageCount].style.display="block";
+//   })
+// })
 // next button
 oNext.addEventListener("click", function() {
   pageCount++;

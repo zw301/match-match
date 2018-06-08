@@ -168,7 +168,6 @@ footer .links p {
   position: relative;
   width: 630px;
   flex: 1;
-  /* border: 1px solid grey; */
 }
 .stage {
   width: 630px;
@@ -194,11 +193,11 @@ footer .links p {
 }
 
 #stage .tile.showhint {
-  /* border: 5px solid rgba(255,0,0,.3); */
   transform: scale(1.4);
   background-color: #FFFD82;
-  /* outline-offset: 3px; */
   z-index: 99;
+  animation-fill-mode: both;
+  animation: highlight 2s ease-in-out infinite alternate;
 }
 
 
@@ -253,6 +252,21 @@ canvas {
   }
   /* from { transform: scale(.5); opacity: 0 } */
 }
+
+@keyframes highlight {
+  0%{
+    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+  }
+  50%{
+    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+    transform: scale(1.5);
+  }
+  100% {
+    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.2);
+            transform: scale(1);
+  }
+}
 /* Stage End */
 
 
@@ -291,19 +305,19 @@ canvas {
 }
 
 
-.modal-guides {
+.model-guides {
   position: relative;
   color: grey;
 }
 
-.modal-guides  .guide {
+.model-guides  .guide {
   /* position: absolute; */
   /* width: 90%; */
   /* margin: 20px auto; */
   /* padding: 10px; */
 }
 
-.modal-guides .modal-welcome-header {
+.model-guides .model-welcome-header {
   width: 100%;
   height: 280px;
   background-color: #A1D2CE;
@@ -311,19 +325,19 @@ canvas {
   position: relative;
 }
 
-.modal-guides .modal-welcome-header img{
+.model-guides .model-welcome-header img{
   display: block;
   margin: 0 auto;
   padding-top: 80px;
 }
 
-.modal-guides .modal-welcome-header h2 {
+.model-guides .model-welcome-header h2 {
   text-align: center;
   padding-top: 30px;
   text-transform: uppercase;
 }
 
-.modal-guides .modal-welcome-header h2:after{
+.model-guides .model-welcome-header h2:after{
   border-style: solid;
   border-width: 20px 20px 0;
   border-color: #A1D2CE transparent transparent;
@@ -337,10 +351,10 @@ canvas {
   left: 50%;
 }
 
-.modal-guides .model-info {
+.model-guides .model-info {
   margin: 40px 20px 0 20px;
 }
-.modal-guides .model-info p {
+.model-guides .model-info p {
   margin: 4px 0;
   text-align: center;
 }
@@ -424,7 +438,7 @@ canvas {
 }
 
 #model-pages .color{
-  background-color: #A1D2CE;
+  /* background-color: #A1D2CE; */
   background-color: #6db9b3;
   /* background-color: #FE7D77; */
 }
@@ -432,6 +446,30 @@ canvas {
 #model-start {
   background-color: #A1D2CE;
   width: 300px;
-  margin: 100px auto;
+}
+
+.model-img-section {
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #ccc;
+}
+
+.model-img-container {
+  width: 49%;
+  height: 240px;
+  overflow: hidden;
+  text-align: center;
+  /* border: 1px solid #ccc; */
+}
+
+.model-img-container img {
+  width: 90%;
+}
+
+.model-des-section {
+  border: 1px solid red;
+  padding: 10px;
+  text-align: center;
 }
 /* Welcome Modal end*/
