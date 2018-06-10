@@ -34,7 +34,7 @@ header {
 
 header h1 {
   color: #fff;
-  text-shadow: 2px 2px #FE7D77;
+  text-shadow: 2px 2px #FE7D77, 4px 4px #666;
   font-size: 38px;
   padding: 12px 0;
   font-weight: 900;
@@ -110,7 +110,6 @@ nav {
 .button {
   box-sizing: border-box;
   color: #fff;
-  /* border: 1px solid #A9CBB7; */
   border: 1px solid #A1D2CE;
   border-radius: 10px;
   /* background-color: #A9CBB7; */
