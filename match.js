@@ -672,7 +672,7 @@ function resetModal() {
     oPrev.style.display="none";
   }
 
-  if (pageCount < 4) {
+  if (pageCount < 3) {
     oNext.style.display="block";
   } else {
     oNext.style.display="none";
@@ -713,7 +713,6 @@ oModelStart.addEventListener("click", resetModal);
 // next button
 oNext.addEventListener("click", function() {
   pageCount++;
-
   if (pageCount > 0) {
     oPrev.style.display="block";
   } else {
@@ -726,9 +725,9 @@ oNext.addEventListener("click", function() {
     guide.style.display="none";
   });
   oGuides[pageCount].style.display="block";
-  if (pageCount >= 4) {
+  if (pageCount >= 3) {
     oNext.style.display="none";
-    pageCount = 4;
+    pageCount = 3;
   }
 });
 
@@ -736,10 +735,12 @@ oNext.addEventListener("click", function() {
 oPrev.addEventListener("click", function() {
   pageCount--;
 
+  console.log(pageCount)
+
   resetSteps();
   oModelSteps[pageCount].classList.add("color");
 
-  if (pageCount < 3) {
+  if (pageCount < 4) {
     oNext.style.display="block";
   } else {
     oNext.style.display="none";
@@ -768,17 +769,20 @@ const oMusicOnOff = document.querySelector("#musicOnOff");
 
 oBgm.loop = true;
 oBgm.volume = 0.5;
-oClickEffect.volume = 0.5;
+oClickEffect.volume = 0.6;
 let bgmPlay = true;
 
 oMusicBtn.addEventListener("click", function() {
   if(bgmPlay) {
     bgm.play();
     bgmPlay = false;
-    oMusicOnOff.innerHTML="OFF";
+    oMusicOnOff.classList.remove("fa-play");
+    oMusicOnOff.classList.add("fa-pause");
   } else {
     bgm.pause();
     bgmPlay = true;
-    oMusicOnOff.innerHTML="ON";
+    // oMusicOnOff.innerHTML="ON";
+    oMusicOnOff.classList.remove("fa-pause");
+    oMusicOnOff.classList.add("fa-play");
   }
 });

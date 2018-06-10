@@ -30,70 +30,71 @@
           </div>
           <div id="guide-1" class="guide">
             <h3> Welcome to Match-Match !</h3>
-            <div class="model-img-section">
-              <div  class="model-img-container">
-                <img src="./img/intro.jpeg" />
+            <div class="model-section">
+              <div class="model-section-left">
+                <div class="model-img-container">
+                  <img src="./img/guide/directLink.png" />
+                </div>
+                <div class="model-info-container">
+                  <p>There is a direct link between two identical tiles.</p>
+                  <p>We can click and eliminate this pair since no other tile is between them.</p>
+                </div>
               </div>
-              <div class="model-img-container">
-                <img src="./img/intro.jpeg" />
+              <div class="model-section-right">
+                <div class="model-img-container">
+                  <img src="./img/guide/noDirectLink.png" />
+                </div>
+                <div class="model-info-container">
+                  <p>Another tile is between two identical tiles. </p>
+                  <p>We cannot eleminate this pair.</p>
+                </div>
               </div>
-            </div>
-            <div class="model-des-section">
-              <p>guide 1</p>
-              <p>guide 1</p>
-              <p>guide 1</p>
             </div>
           </div>
           <div id="guide-2" class="guide">
             <h3> Welcome to Match-Match !</h3>
-            <div class="model-img-section">
-              <div  class="model-img-container">
-                <img src="./img/intro.jpeg" />
+            <div class="model-section">
+              <div class="model-section-left">
+                <div class="model-img-container">
+                  <img src="./img/guide/oneTurn.png" />
+                </div>
+                <div class="model-info-container">
+                  <p>One turn is allowed to link two tiles.</p>
+                </div>
               </div>
-              <div class="model-img-container">
-                <img src="./img/intro.jpeg" />
+              <div class="model-section-right">
+                <div class="model-img-container">
+                  <img src="./img/guide/noOneTurn.png" />
+                </div>
+                <div class="model-info-container">
+                  <p>There's a tile between this one-turn link.</p>
+                  <p>So these two tiles can not be linked.</p>
+                </div>
               </div>
-            </div>
-            <div class="model-des-section">
-              <p>guide 2</p>
-              <p>guide 2</p>
-              <p>guide 2</p>
-              <p>guide 2</p>
             </div>
           </div>
           <div id="guide-3" class="guide">
             <h3> Welcome to Match-Match !</h3>
-            <div class="model-img-section">
-              <div  class="model-img-container">
-                <img src="./img/intro.jpeg" />
+            <div class="model-section">
+              <div class="model-section-left">
+                <div class="model-img-container">
+                  <img src="./img/guide/twoTurns.png" />
+                </div>
+                <div class="model-info-container">
+                  <p>Two-turn link is also allowed.</p>
+                  <p>The link can be outside the board.</p>
+                </div>
               </div>
-              <div class="model-img-container">
-                <img src="./img/intro.jpeg" />
-              </div>
-            </div>
-            <div class="model-des-section">
-              <p>guide 3</p>
-              <p>guide 3</p>
-              <p>guide 3</p>
-              <p>guide 3</p>
-            </div>
-          </div>
-          <div id="guide-4" class="guide">
-            <h3> Welcome to Match-Match !</h3>
-            <div class="model-img-section">
-              <div  class="model-img-container">
-                <img src="./img/intro.jpeg" />
-              </div>
-              <div class="model-img-container">
-                <img src="./img/intro.jpeg" />
+              <div class="model-section-right">
+                <div class="model-img-container">
+                  <img src="./img/guide/noTwoTurns.png" />
+                </div>
+                <div class="model-info-container">
+                  <p>This is an invalid two-turn link because there is another tile in between the link.</p>
+                </div>
               </div>
             </div>
-            <div class="model-des-section">
-              <p>Hint 5 times</p>
-              <p>Music button</p>
-              <p class="button" id="model-start">Got It. Start Game!</p>
-            </div>
-
+            <span class="model-button"id="model-start">Got It. Start Game!</span>
           </div>
         </div>
         <span id="model-skip" onselectstart="return false;">&times;</span>
@@ -105,7 +106,6 @@
         </span>
         <div id="model-pages">
           <div class="model-step color"></div>
-          <div class="model-step"></div>
           <div class="model-step"></div>
           <div class="model-step"></div>
           <div class="model-step"></div>
@@ -171,7 +171,7 @@
           </div>
           <div id="music" class="button">
             <div>MUSIC</div>
-            <div class="subtitle" id="musicOnOff">ON</div>
+            <div class="subtitle" ><i id="musicOnOff" class="fas fa-play"></i></div>
           </div>
           <div id="tutorial" class="button">
             <div>Tutorial</div>
